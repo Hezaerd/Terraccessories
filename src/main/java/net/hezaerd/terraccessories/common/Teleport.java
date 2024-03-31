@@ -60,6 +60,12 @@ public class Teleport {
         }
     }
 
+    /**
+     * 0 - player has changed dimensions and teleported to a spawn point;
+     * 1 - player hasn't changed dimensions, but has teleported;
+     * 2 - player can't change dimensions, but has teleported;
+     * 3 - player unable to change dimensions and can't teleport;
+     * */
     public static int teleportToSpawn(PlayerEntity playerEntity, World world, boolean interdimensional) {
         ServerWorld serverWorld = (ServerWorld)world;
         ServerPlayerEntity player = (ServerPlayerEntity)playerEntity;
