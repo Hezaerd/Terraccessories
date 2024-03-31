@@ -1,9 +1,12 @@
 {
+  "itemGroup.terraccessories": "Terraccessories",
   "item.terraccessories.infinite_water_bucket": "Infinite Water Bucket",
   "item.terraccessories.infinite_water_bucket.tooltip": "Hmm water",
   "item.terraccessories.infinite_lava_bucket": "Infinite Lava Bucket",
   "item.terraccessories.infinite_lava_bucket.tooltip": "Hmm lava",
   "item.terraccessories.magic_mirror": "Magic Mirror",
   "item.terraccessories.magic_mirror.tooltip": "Teleports you back to home safely",
-  "itemGroup.terraccessories": "Terraccessories"
+  "item.terraccessories.magic_mirror.success": "§oYou gaze into the cloudy mirror... You feel a warm sensation",
+  "item.terraccessories.magic_mirror.fail": "§oYou gaze into the cloudy mirror... It can't find a valid spawnpoint",
+  "item.terraccessories.magic_mirror.power": "§oThis mirror is not powerful enough for cross-dimensional travel!"
 }

@@ -2,6 +2,7 @@ package net.hezaerd.terraccessories.registry;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.hezaerd.terraccessories.items.DemonConch;
 import net.hezaerd.terraccessories.items.InfiniteLavaBucket;
 import net.hezaerd.terraccessories.items.InfiniteWaterBucket;
 import net.hezaerd.terraccessories.items.MagicMirror;
@@ -19,6 +20,8 @@ public class TerraItems {
     public static final InfiniteLavaBucket INFINITE_LAVA_BUCKET = new InfiniteLavaBucket(new FabricItemSettings());
     public static final Crate CRATE = new Crate(new FabricItemSettings());
 
+    public  static final DemonConch DEMON_CONCH = new DemonConch(new FabricItemSettings());
+
     private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(INFINITE_WATER_BUCKET))
             .displayName(Text.translatable("itemGroup.terraccessories"))
@@ -27,6 +30,7 @@ public class TerraItems {
                 entries.add(INFINITE_LAVA_BUCKET);
                 entries.add(MAGIC_MIRROR);
                 entries.add(CRATE);
+                entries.add(DEMON_CONCH);
             }).build();
 
     public static void register() {
@@ -36,5 +40,6 @@ public class TerraItems {
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "infinite_water_bucket"), INFINITE_WATER_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "infinite_lava_bucket"), INFINITE_LAVA_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "crate"), CRATE);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "demon_conch"), DEMON_CONCH);
     }
 }
