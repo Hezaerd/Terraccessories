@@ -11,6 +11,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 import net.hezaerd.terraccessories.items.MagicMirror;
+import net.hezaerd.terraccessories.items.InfiniteWaterBucket;
 
 
 public class Terraccessories implements ModInitializer {
@@ -20,11 +21,14 @@ public class Terraccessories implements ModInitializer {
 	public static final MagicMirror MAGIC_MIRROR = new MagicMirror(new FabricItemSettings()
 			.maxCount(1));
 
+	public static final InfiniteWaterBucket INFINITE_WATER_BUCKET = new InfiniteWaterBucket(new FabricItemSettings().maxCount(1));
+
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
 
 		Registry.register(Registries.ITEM, new Identifier("terraccessories", "magic_mirror"), MAGIC_MIRROR);
+		Registry.register(Registries.ITEM, new Identifier("terraccessories", "infinite_water_bucket"), INFINITE_WATER_BUCKET);
 	}
 
 
