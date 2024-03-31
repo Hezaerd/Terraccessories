@@ -2,5 +2,6 @@
   "item.terraccessories.infinite_water_bucket": "Infinite Water Bucket",
   "item.terraccessories.infinite_water_bucket.tooltip": "Infinite water source",
   "item.terraccessories.magic_mirror": "Magic Mirror",
-  "item.terraccessories.magic_mirror.tooltip": "Teleports you back to home safely"
+  "item.terraccessories.magic_mirror.tooltip": "Teleports you back to home safely",
+  "itemGroup.terraccessories": "Terraccessories"
 }
