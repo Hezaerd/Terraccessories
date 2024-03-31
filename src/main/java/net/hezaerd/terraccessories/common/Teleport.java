@@ -14,7 +14,6 @@ import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 
 public class Teleport {
-
     public static void teleportToPos(PlayerEntity playerEntity, BlockPos pos) {
         ServerPlayerEntity player = (ServerPlayerEntity)playerEntity;
         ChunkPos ticketPos = new ChunkPos(new BlockPos(pos));
