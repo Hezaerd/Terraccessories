@@ -3,12 +3,14 @@
 	"id": "terraccessories",
 	"version": "${version}",
 	"name": "Terraccessories",
-	"description": "Bring some terraria accessories to your minecraft world!",
+	"description": "Bring some cool and usefull terraria items to your minecraft world!",
 	"authors": [
-		"Hezaerd"
+		"Hezaerd",
+		"Raftatul",
+		"Angel2180"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
+		"homepage": "https://github.com/Hezaerd/Terraccessories",
 		"sources": "https://github.com/Hezaerd/Terraccessories"
 	},
 	"license": "CC0-1.0",

@@ -1,5 +1,7 @@
 package net.hezaerd.terraccessories.items;
 
+import net.hezaerd.terraccessories.Terraccessories;
+import net.hezaerd.terraccessories.TerraccessoriesConfig;
 import net.hezaerd.terraccessories.common.Teleport;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -17,19 +19,8 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class IceMirror extends Item {
-
-    public static final String MOD_ID = "terraccessories";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-    /* Properties */
-    private static final int cooldown = 200;
-    private static final boolean interdimensional = true;
-    private static final boolean doDebuff = true;
-    private static final int levelCost = 1;
 
     public IceMirror(Settings settings) {
         super(settings.maxCount(1));
@@ -60,7 +51,7 @@ public class IceMirror extends Item {
     }
 
     private boolean canUse(PlayerEntity player) {
-        return player.experienceLevel >= levelCost || player.isCreative();
+        return player.experienceLevel >= Terraccessories.CONFIG.mirror.mirror_cost() || player.isCreative();
     }
 
     @Override
@@ -84,7 +75,7 @@ public class IceMirror extends Item {
         BlockPos spawnPos = player.getSpawnPointPosition();
 
         if (!player.isCreative())
-            player.getItemCooldownManager().set(this, cooldown);
+            player.getItemCooldownManager().set(this, Terraccessories.CONFIG.mirror.mirror_cooldown() * 10);
 
         if (!canUse(player)) {
             player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.missing_xp").formatted(Formatting.DARK_RED), true);
@@ -92,15 +83,15 @@ public class IceMirror extends Item {
         }
 
         if (spawnPos != null) {
-            switch (Teleport.teleportToSpawn(player, world, interdimensional)) {
+            switch (Teleport.teleportToSpawn(player, world, Terraccessories.CONFIG.mirror.mirror_interdimensional())) {
                 case 0, 1, 2 -> {
-                    if(!player.isCreative()) player.setExperienceLevel(player.experienceLevel - levelCost);
-                    if (doDebuff) applyDebuff(player);
-                    player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.success").formatted(Formatting.AQUA), true);
+                    if(!player.isCreative()) player.setExperienceLevel(player.experienceLevel - Terraccessories.CONFIG.mirror.mirror_cost());
+                    if (Terraccessories.CONFIG.mirror.mirror_debuff()) applyDebuff(player);
+                    player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.success").formatted(Formatting.GREEN), true);
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
                 case 3 -> {
-                    player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.missing_spawn").formatted(Formatting.GREEN), true);
+                    player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.missing_spawn").formatted(Formatting.DARK_RED), true);
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_SHULKER_BULLET_HURT, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
             }
