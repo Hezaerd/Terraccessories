@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.hezaerd.terraccessories.items.InfiniteLavaBucket;
 import net.hezaerd.terraccessories.items.InfiniteWaterBucket;
 import net.hezaerd.terraccessories.items.MagicMirror;
+import net.hezaerd.terraccessories.items.Crate;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -16,6 +17,7 @@ public class TerraItems {
     public static final MagicMirror MAGIC_MIRROR = new MagicMirror(new FabricItemSettings());
     public static final InfiniteWaterBucket INFINITE_WATER_BUCKET = new InfiniteWaterBucket(new FabricItemSettings());
     public static final InfiniteLavaBucket INFINITE_LAVA_BUCKET = new InfiniteLavaBucket(new FabricItemSettings());
+    public static final Crate CRATE = new Crate(new FabricItemSettings());
 
     private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(INFINITE_WATER_BUCKET))
@@ -24,6 +26,7 @@ public class TerraItems {
                 entries.add(INFINITE_WATER_BUCKET);
                 entries.add(INFINITE_LAVA_BUCKET);
                 entries.add(MAGIC_MIRROR);
+                entries.add(CRATE);
             }).build();
 
     public static void register() {
@@ -32,5 +35,6 @@ public class TerraItems {
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "magic_mirror"), MAGIC_MIRROR);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "infinite_water_bucket"), INFINITE_WATER_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "infinite_lava_bucket"), INFINITE_LAVA_BUCKET);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "crate"), CRATE);
     }
 }
