@@ -3,13 +3,13 @@
 	"id": "terraccessories",
 	"version": "${version}",
 	"name": "Terraccessories",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Bring some terraria accessories to your minecraft world!",
 	"authors": [
-		"Me!"
+		"Hezaerd"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Hezaerd/Terraccessories"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/terraccessories/icon.png",
@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"net.hezaerd.terraccessories.Terraccessories"
+		],
+		"client": [
+			"net.hezaerd.terraccessories.TerraccessoriesClient"
 		],
 		"fabric-datagen": [
 			"net.hezaerd.terraccessories.TerraccessoriesDataGenerator"
