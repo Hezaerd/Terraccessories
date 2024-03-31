@@ -2,15 +2,14 @@
   "type": "minecraft:fishing",
   "pools": [
     {
-      "rolls": 1.0,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "terraccessories:crate",
           "weight": 600
         }
-      ]
+      ],
+      "rolls": 1.0
     }
-  ],
-  "random_sequence": "minecraft:gameplay/fishing/fish"
+  ]
 }
