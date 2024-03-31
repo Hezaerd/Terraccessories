@@ -26,11 +26,11 @@ public class Crate extends Item {
         if (Random.create().nextBetween(0, 100) == 0)
             user.getInventory().insertStack(new ItemStack(TerraItems.MAGIC_MIRROR, 1));
         if (Random.create().nextBetween(0, 200) == 0)
-            user.getInventory().insertStack(new ItemStack(TerraItems.INFINITE_LAVA_BUCKET, 1));
+            user.getInventory().insertStack(new ItemStack(TerraItems.BOTTOMLESS_LAVA_BUCKET, 1));
         if (Random.create().nextBetween(0, 100) == 0)
             user.getInventory().insertStack(new ItemStack(TerraItems.DEMON_CONCH, 1));
         if (Random.create().nextBetween(0, 100) == 0)
-            user.getInventory().insertStack(new ItemStack(TerraItems.INFINITE_WATER_BUCKET, 1));
+            user.getInventory().insertStack(new ItemStack(TerraItems.BOTTOMLESS_WATER_BUCKET, 1));
 
         return super.use(world, user, hand);
     }

@@ -16,8 +16,8 @@ import net.minecraft.client.item.TooltipContext;
 
 import java.util.List;
 
-public class InfiniteWaterBucket extends Item {
-    public InfiniteWaterBucket(Settings settings) {
+public class BottomlessWaterBucket extends Item {
+    public BottomlessWaterBucket(Settings settings) {
         super(settings.maxCount(1));
     }
 
@@ -30,10 +30,5 @@ public class InfiniteWaterBucket extends Item {
         world.setBlockState(blockPos.offset(context.getSide()), Blocks.WATER.getDefaultState());
 
         return ActionResult.PASS;
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.terraccessories.infinite_water_bucket.tooltip").formatted(Formatting.GOLD));
     }
 }

@@ -16,8 +16,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class InfiniteLavaBucket extends Item {
-    public InfiniteLavaBucket(Settings settings) {
+public class BottomlessLavaBucket extends Item {
+    public BottomlessLavaBucket(Settings settings) {
         super(settings.maxCount(1));
     }
 
@@ -30,10 +30,5 @@ public class InfiniteLavaBucket extends Item {
         world.setBlockState(blockPos.offset(context.getSide()), Blocks.LAVA.getDefaultState());
 
         return ActionResult.PASS;
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.terraccessories.infinite_lava_bucket.tooltip").formatted(Formatting.GOLD));
     }
 }

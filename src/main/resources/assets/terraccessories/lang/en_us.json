@@ -1,24 +1,27 @@
 {
   "itemGroup.terraccessories": "Terraccessories",
-  "item.terraccessories.infinite_water_bucket": "Infinite Water Bucket",
-  "item.terraccessories.infinite_water_bucket.tooltip": "Hmm water",
-  "item.terraccessories.infinite_lava_bucket": "Infinite Lava Bucket",
-  "item.terraccessories.infinite_lava_bucket.tooltip": "Hmm lava",
+
+  "item.terraccessories.bottomless_water_bucket": "Bottomless Water Bucket",
+
+  "item.terraccessories.bottomless_lava_bucket": "Bottomless Lava Bucket",
+
   "item.terraccessories.magic_mirror": "Magic Mirror",
   "item.terraccessories.magic_mirror.tooltip": "Gaze in the mirror to return home",
   "item.terraccessories.magic_mirror.success": "You feel a warm sensation",
   "item.terraccessories.magic_mirror.missing_xp": "You require more experience to use this mirror",
   "item.terraccessories.magic_mirror.missing_spawn": "You gaze into the cloudy mirror... It can't find a valid spawnpoint",
   "item.terraccessories.magic_mirror.power": "This mirror is not powerful enough for cross-dimensional travel!",
+
   "item.terraccessories.ice_mirror": "Ice Mirror",
   "item.terraccessories.ice_mirror.tooltip": "Gaze in the mirror to return home",
   "item.terraccessories.ice_mirror.success": "You feel a cold sensation",
   "item.terraccessories.ice_mirror.missing_xp": "You require more experience to use this mirror",
   "item.terraccessories.ice_mirror.missing_spawn": "You gaze into the cloudy mirror... It can't find a valid spawnpoint",
   "item.terraccessories.ice_mirror.power": "This mirror is not powerful enough for cross-dimensional travel!",
+
   "item.terraccessories.demon_conch": "Demon Conch",
   "item.terraccessories.demon_conch.tooltip": "If you listen closely, you can hear screams",
-  "item.terraccessories.demon_conch.tooltip2": "Watch your toes'",
+  "item.terraccessories.demon_conch.tooltip2": "Watch your toes",
   "item.terraccessories.demon_conch.already_nether": "The demon conch doesn't seem to work here",
   "item.terraccessories.demon_conch.success": "The air sings with the sound of the underworld",
   "item.terraccessories.demon_conch.fail": "The demon conch remains silent",
