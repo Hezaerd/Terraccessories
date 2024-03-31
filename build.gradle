@@ -11,18 +11,10 @@ base {
 }
 
 repositories {
-	maven {
-		name = "TerraformersMC"
-		url = "https://maven.terraformersmc.com/"
-	}
-	maven {
-		name = "Ladysnake Libs"
-		url = 'https://maven.ladysnake.org/releases'
-	}
-	maven {
-		name = "wispforest"
-		url = 'https://maven.wispforest.io'
-	}
+	maven { url "https://maven.terraformersmc.com/" } // Repo for Mod Menu
+	maven { url "https://maven.ladysnake.org/releases" } // Repo for Trinkets
+	maven { url "https://maven.wispforest.io" } // Repo for owo-lib
+
 }
 
 fabricApi {
@@ -37,7 +29,10 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+
+	// Mod Menu
+	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
+
 	// Trinkets
 	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
 
