@@ -11,8 +11,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.Hand;
@@ -21,9 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class MagicMirror extends Item {
-
-    public static final String MOD_ID = "terraccessories";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     /* Properties */
     private static final int cooldown = 200;
