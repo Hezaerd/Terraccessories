@@ -22,7 +22,7 @@ public class Suitable {
         }
 
         /* Check at other Y levels (above) */
-        for (int y = pos.getY() + 1; y < 128; y++) {
+        for (int y = pos.getY() + 1; y < 125; y++) {
             BlockPos blockToTest = new BlockPos(pos.getX(), y, pos.getZ());
             if (isBlockSuitable(world, blockToTest))
                 return blockToTest;
@@ -47,7 +47,7 @@ public class Suitable {
         }
 
         /* Check at other Y levels (above) */
-        for (int y = pos.getY() + 1; y < 128; y++) {
+        for (int y = pos.getY() + 1; y < 125; y++) {
             BlockPos blockToTest = new BlockPos(pos.getX(), y, pos.getZ());
             if (isBlockSuitable(world, blockToTest))
                 return blockToTest;
@@ -77,7 +77,7 @@ public class Suitable {
         }
 
         /* Check in the chunk at other Y levels (above) */
-        for (int y = pos.getY() + 1; y < 128; y++) {
+        for (int y = pos.getY() + 1; y < 125; y++) {
             for (int x = chunkPos.getStartX(); x < chunkPos.getEndX(); x++) {
                 for (int z = chunkPos.getStartZ(); z < chunkPos.getEndZ(); z++) {
                     BlockPos blockToTest = new BlockPos(x, y, z);

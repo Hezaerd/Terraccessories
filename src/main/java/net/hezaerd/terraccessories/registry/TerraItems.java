@@ -21,7 +21,7 @@ public class TerraItems {
     public static final BottomlessWaterBucket BOTTOMLESS_WATER_BUCKET = new BottomlessWaterBucket(Fluids.WATER, new FabricItemSettings());
     public static final BottomlessLavaBucket BOTTOMLESS_LAVA_BUCKET = new BottomlessLavaBucket(Fluids.LAVA, new FabricItemSettings());
     public static final Crate CRATE = new Crate(new FabricItemSettings());
-
+    public static final RandomTeleportationPotion RANDOM_TELEPORTATION_POTION = new RandomTeleportationPotion(new FabricItemSettings());
     public  static final DemonConch DEMON_CONCH = new DemonConch(new FabricItemSettings());
 
     private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
@@ -33,6 +33,7 @@ public class TerraItems {
                 entries.add(BOTTOMLESS_WATER_BUCKET);
                 entries.add(BOTTOMLESS_LAVA_BUCKET);
                 entries.add(CRATE);
+                entries.add(RANDOM_TELEPORTATION_POTION);
                 entries.add(DEMON_CONCH);
             }).build();
 
@@ -44,6 +45,7 @@ public class TerraItems {
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "bucket/bottomless_water_bucket"), BOTTOMLESS_WATER_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "bucket/bottomless_lava_bucket"), BOTTOMLESS_LAVA_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "crate"), CRATE);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "random_teleportation_potion"), RANDOM_TELEPORTATION_POTION);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "demon_conch"), DEMON_CONCH);
     }
 }
