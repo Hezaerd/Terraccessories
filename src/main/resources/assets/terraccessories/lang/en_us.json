@@ -1,9 +1,9 @@
 {
   "itemGroup.terraccessories": "Terraccessories",
 
-  "item.terraccessories.bottomless_water_bucket": "Bottomless Water Bucket",
+  "item.terraccessories.bucket.bottomless_water_bucket": "Bottomless Water Bucket",
 
-  "item.terraccessories.bottomless_lava_bucket": "Bottomless Lava Bucket",
+  "item.terraccessories.bucket.bottomless_lava_bucket": "Bottomless Lava Bucket",
 
   "item.terraccessories.magic_mirror": "Magic Mirror",
   "item.terraccessories.magic_mirror.tooltip": "Gaze in the mirror to return home",

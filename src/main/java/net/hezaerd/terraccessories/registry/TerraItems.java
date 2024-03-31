@@ -4,6 +4,9 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 
 import net.hezaerd.terraccessories.items.*;
+import net.hezaerd.terraccessories.items.bucket.BottomlessLavaBucket;
+import net.hezaerd.terraccessories.items.bucket.BottomlessWaterBucket;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -15,8 +18,8 @@ import net.minecraft.util.Identifier;
 public class TerraItems {
     public static final MagicMirror MAGIC_MIRROR = new MagicMirror(new FabricItemSettings());
     public static final IceMirror ICE_MIRROR = new IceMirror(new FabricItemSettings());
-    public static final BottomlessWaterBucket BOTTOMLESS_WATER_BUCKET = new BottomlessWaterBucket(new FabricItemSettings());
-    public static final BottomlessLavaBucket BOTTOMLESS_LAVA_BUCKET = new BottomlessLavaBucket(new FabricItemSettings());
+    public static final BottomlessWaterBucket BOTTOMLESS_WATER_BUCKET = new BottomlessWaterBucket(Fluids.WATER, new FabricItemSettings());
+    public static final BottomlessLavaBucket BOTTOMLESS_LAVA_BUCKET = new BottomlessLavaBucket(Fluids.LAVA, new FabricItemSettings());
     public static final Crate CRATE = new Crate(new FabricItemSettings());
 
     public  static final DemonConch DEMON_CONCH = new DemonConch(new FabricItemSettings());
@@ -38,8 +41,8 @@ public class TerraItems {
 
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "magic_mirror"), MAGIC_MIRROR);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "ice_mirror"), ICE_MIRROR);
-        Registry.register(Registries.ITEM, new Identifier("terraccessories", "bottomless_water_bucket"), BOTTOMLESS_WATER_BUCKET);
-        Registry.register(Registries.ITEM, new Identifier("terraccessories", "bottomless_lava_bucket"), BOTTOMLESS_LAVA_BUCKET);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "bucket/bottomless_water_bucket"), BOTTOMLESS_WATER_BUCKET);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "bucket/bottomless_lava_bucket"), BOTTOMLESS_LAVA_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "crate"), CRATE);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "demon_conch"), DEMON_CONCH);
     }

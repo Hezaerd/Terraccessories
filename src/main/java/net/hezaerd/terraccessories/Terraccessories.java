@@ -15,9 +15,7 @@ public class Terraccessories implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
-
-
-
+		
 		TerraItems.register();
 	}
 
