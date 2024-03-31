@@ -2,19 +2,15 @@ package net.hezaerd.terraccessories.registry;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+
 import net.hezaerd.terraccessories.items.*;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTables;
-import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import net.minecraft.block.Blocks;
 
 public class TerraItems {
     public static final MagicMirror MAGIC_MIRROR = new MagicMirror(new FabricItemSettings());
