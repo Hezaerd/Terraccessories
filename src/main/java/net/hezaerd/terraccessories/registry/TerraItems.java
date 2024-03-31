@@ -3,11 +3,7 @@ package net.hezaerd.terraccessories.registry;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.hezaerd.terraccessories.items.DemonConch;
-import net.hezaerd.terraccessories.items.InfiniteLavaBucket;
-import net.hezaerd.terraccessories.items.InfiniteWaterBucket;
-import net.hezaerd.terraccessories.items.MagicMirror;
-import net.hezaerd.terraccessories.items.Crate;
+import net.hezaerd.terraccessories.items.*;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootPool;
@@ -22,6 +18,7 @@ import net.minecraft.block.Blocks;
 
 public class TerraItems {
     public static final MagicMirror MAGIC_MIRROR = new MagicMirror(new FabricItemSettings());
+    public static final IceMirror ICE_MIRROR = new IceMirror(new FabricItemSettings());
     public static final InfiniteWaterBucket INFINITE_WATER_BUCKET = new InfiniteWaterBucket(new FabricItemSettings());
     public static final InfiniteLavaBucket INFINITE_LAVA_BUCKET = new InfiniteLavaBucket(new FabricItemSettings());
     public static final Crate CRATE = new Crate(new FabricItemSettings());
@@ -32,9 +29,10 @@ public class TerraItems {
             .icon(() -> new ItemStack(INFINITE_WATER_BUCKET))
             .displayName(Text.translatable("itemGroup.terraccessories"))
             .entries((context, entries) -> {
+                entries.add(MAGIC_MIRROR);
+                entries.add(ICE_MIRROR);
                 entries.add(INFINITE_WATER_BUCKET);
                 entries.add(INFINITE_LAVA_BUCKET);
-                entries.add(MAGIC_MIRROR);
                 entries.add(CRATE);
                 entries.add(DEMON_CONCH);
             }).build();
@@ -43,6 +41,7 @@ public class TerraItems {
         Registry.register(Registries.ITEM_GROUP, new Identifier("terraccessories", "terraccessories"), ITEM_GROUP);
 
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "magic_mirror"), MAGIC_MIRROR);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "ice_mirror"), ICE_MIRROR);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "infinite_water_bucket"), INFINITE_WATER_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "infinite_lava_bucket"), INFINITE_LAVA_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "crate"), CRATE);

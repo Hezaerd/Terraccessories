@@ -4,23 +4,23 @@ import net.hezaerd.terraccessories.common.Teleport;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.UseAction;
-import net.minecraft.util.math.BlockPos;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.UseAction;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class MagicMirror extends Item {
+public class IceMirror extends Item {
 
     public static final String MOD_ID = "terraccessories";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -31,14 +31,14 @@ public class MagicMirror extends Item {
     private static final boolean doDebuff = true;
     private static final int levelCost = 1;
 
-    public MagicMirror(Settings settings) {
+    public IceMirror(Settings settings) {
         super(settings.maxCount(1));
     }
 
     /* Tooltip */
     @Override
-    public void appendTooltip(ItemStack stack, World world, java.util.List<net.minecraft.text.Text> tooltip, net.minecraft.client.item.TooltipContext context) {
-        tooltip.add(Text.translatable("item.terraccessories.magic_mirror.tooltip").formatted(Formatting.DARK_PURPLE));
+    public void appendTooltip(ItemStack stack, World world, java.util.List<Text> tooltip, net.minecraft.client.item.TooltipContext context) {
+        tooltip.add(Text.translatable("item.terraccessories.ice_mirror.tooltip").formatted(Formatting.DARK_PURPLE));
     }
 
     /* Usage animation */
@@ -71,8 +71,6 @@ public class MagicMirror extends Item {
 
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-
-
         if (remainingUseTicks % 16 == 0) {
             world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
@@ -89,7 +87,7 @@ public class MagicMirror extends Item {
             player.getItemCooldownManager().set(this, cooldown);
 
         if (!canUse(player)) {
-            player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.missing_xp").formatted(Formatting.DARK_RED), true);
+            player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.missing_xp").formatted(Formatting.DARK_RED), true);
             return super.finishUsing(stack, world, user);
         }
 
@@ -98,18 +96,18 @@ public class MagicMirror extends Item {
                 case 0, 1, 2 -> {
                     if(!player.isCreative()) player.setExperienceLevel(player.experienceLevel - levelCost);
                     if (doDebuff) applyDebuff(player);
-                    player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.success").formatted(Formatting.AQUA), true);
+                    player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.success").formatted(Formatting.AQUA), true);
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
                 case 3 -> {
-                    player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.missing_spawn").formatted(Formatting.GREEN), true);
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.missing_spawn").formatted(Formatting.GREEN), true);
+                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_SHULKER_BULLET_HURT, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
             }
         }
         else {
-            player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.missing_spawn").formatted(Formatting.DARK_RED), true);
-            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            player.sendMessage(Text.translatable("item.terraccessories.ice_mirror.missing_spawn").formatted(Formatting.DARK_RED), true);
+            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_SHULKER_BULLET_HURT, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
 
         return super.finishUsing(stack, world, user);
