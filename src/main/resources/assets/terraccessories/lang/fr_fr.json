@@ -1,6 +1,8 @@
 {
   "item.terraccessories.infinite_water_bucket": "Sceau d'eau infini",
-  "item.terraccessories.infinite_water_bucket.tooltip": "source d'eau infinie",
+  "item.terraccessories.infinite_water_bucket.tooltip": "Hmm l'eau",
+  "item.terraccessories.infinite_lava_bucket": "Sceau de lave infini",
+  "item.terraccessories.infinite_lava_bucket.tooltip": "Hmm la lave",
   "item.terraccessories.magic_mirror": "Miroir magique",
   "item.terraccessories.magic_mirror.tooltip": "Téléporte à votre spawn"
 }
