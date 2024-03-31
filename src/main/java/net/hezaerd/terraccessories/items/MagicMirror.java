@@ -2,6 +2,8 @@ package net.hezaerd.terraccessories.items;
 
 import net.hezaerd.terraccessories.common.Teleport;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -26,6 +28,8 @@ public class MagicMirror extends Item {
     /* Properties */
     private static final int cooldown = 200;
     private static final boolean interdimensional = true;
+    private static final boolean doDebuff = true;
+    private static final int levelCost = 1;
 
     public MagicMirror(Settings settings) {
         super(settings.maxCount(1));
@@ -46,13 +50,17 @@ public class MagicMirror extends Item {
     /* Maximum usage time */
     @Override
     public int getMaxUseTime(ItemStack stack) {
-        return 64;
+        return 48;
     }
 
     /* Enchantment glint */
     @Override
     public boolean hasGlint(ItemStack stack) {
         return true;
+    }
+
+    private boolean canUse(PlayerEntity player) {
+        return player.experienceLevel >= levelCost || player.isCreative();
     }
 
     @Override
@@ -62,31 +70,53 @@ public class MagicMirror extends Item {
     }
 
     @Override
+    public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+
+
+        if (remainingUseTicks % 16 == 0) {
+            world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        }
+    }
+
+    @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if(world.isClient()) { return super.finishUsing(stack, world, user); }
 
         ServerPlayerEntity player = (ServerPlayerEntity)user;
         BlockPos spawnPos = player.getSpawnPointPosition();
 
-        player.getItemCooldownManager().set(this, cooldown);
+        if (!player.isCreative())
+            player.getItemCooldownManager().set(this, cooldown);
+
+        if (!canUse(player)) {
+            player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.missing_xp").formatted(Formatting.DARK_RED), true);
+            return super.finishUsing(stack, world, user);
+        }
 
         if (spawnPos != null) {
             switch (Teleport.teleportToSpawn(player, world, interdimensional)) {
                 case 0, 1, 2 -> {
+                    if(!player.isCreative()) player.setExperienceLevel(player.experienceLevel - levelCost);
+                    if (doDebuff) applyDebuff(player);
                     player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.success").formatted(Formatting.AQUA), true);
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
                 case 3 -> {
-                    player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.fail").formatted(Formatting.GREEN), true);
+                    player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.missing_spawn").formatted(Formatting.GREEN), true);
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_SHULKER_BULLET_HURT, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
             }
         }
         else {
-            player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.fail").formatted(Formatting.DARK_RED), true);
+            player.sendMessage(Text.translatable("item.terraccessories.magic_mirror.missing_spawn").formatted(Formatting.DARK_RED), true);
             world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_SHULKER_BULLET_HURT, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
 
         return super.finishUsing(stack, world, user);
+    }
+
+    private void applyDebuff(PlayerEntity player) {
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 2 * 10, 5));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 3 * 10, 10));
     }
 }

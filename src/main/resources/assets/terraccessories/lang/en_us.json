@@ -5,8 +5,9 @@
   "item.terraccessories.infinite_lava_bucket": "Infinite Lava Bucket",
   "item.terraccessories.infinite_lava_bucket.tooltip": "Hmm lava",
   "item.terraccessories.magic_mirror": "Magic Mirror",
-  "item.terraccessories.magic_mirror.tooltip": "Teleports you back to home safely",
-  "item.terraccessories.magic_mirror.success": "§oYou gaze into the cloudy mirror... You feel a warm sensation",
-  "item.terraccessories.magic_mirror.fail": "§oYou gaze into the cloudy mirror... It can't find a valid spawnpoint",
-  "item.terraccessories.magic_mirror.power": "§oThis mirror is not powerful enough for cross-dimensional travel!"
+  "item.terraccessories.magic_mirror.tooltip": "Gaze in the mirror to return home",
+  "item.terraccessories.magic_mirror.success": "You feel a warm sensation",
+  "item.terraccessories.magic_mirror.missing_xp": "You require more experience to use this mirror",
+  "item.terraccessories.magic_mirror.missing_spawn": "You gaze into the cloudy mirror... It can't find a valid spawnpoint",
+  "item.terraccessories.magic_mirror.power": "This mirror is not powerful enough for cross-dimensional travel!"
 }
