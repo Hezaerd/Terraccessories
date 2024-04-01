@@ -3,6 +3,7 @@ package net.hezaerd.terraccessories.registry;
 
 import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
 import net.hezaerd.terraccessories.items.DemonConch;
+import net.hezaerd.terraccessories.items.MagicConch;
 import net.hezaerd.terraccessories.items.RandomTeleportationPotion;
 import net.hezaerd.terraccessories.items.bucket.BottomlessLavaBucket;
 import net.hezaerd.terraccessories.items.bucket.BottomlessWaterBucket;
@@ -22,4 +23,6 @@ public class ItemsInit implements ItemRegistryContainer {
     public static final Item RANDOM_TELEPORTATION_POTION = new RandomTeleportationPotion();
     public static final Item AGLET = new Aglet();
     public static final Item AKLET_OF_THE_WIND = new AkletOfTheWind();
+
+    public  static final Item MAGIC_CONCH = new MagicConch();
 }
