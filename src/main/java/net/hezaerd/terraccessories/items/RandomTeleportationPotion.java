@@ -62,10 +62,12 @@ public class RandomTeleportationPotion extends Item {
             if (truc == null)
                 continue;
 
-            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
-            world.playSound(null, truc.getX(), truc.getY(), truc.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
             player.getItemCooldownManager().set(this, cooldown * 10);
+
+            serverWorld.playSound(null, player.getX(), player.getY(), player.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
             Teleport.teleportToPos(player, truc);
+            serverWorld.playSound(null, player.getX(), player.getY(), player.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
+
             stack.decrement(1);
 
             return super.finishUsing(stack, world, user);

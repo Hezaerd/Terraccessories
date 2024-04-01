@@ -87,6 +87,7 @@ public class DemonConch extends Item {
         }
 
         player.sendMessage(Text.translatable("item.terraccessories.demon_conch.success").formatted(Formatting.RED), true);
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
         Teleport.changeDimensionAndTeleport(player, serverNetherWorld, netherSuitablePos);
         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
