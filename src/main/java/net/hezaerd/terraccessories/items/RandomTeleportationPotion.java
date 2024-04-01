@@ -4,12 +4,14 @@ import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.common.Suitable;
 import net.hezaerd.terraccessories.common.Teleport;
+import net.hezaerd.terraccessories.registry.SoundsInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -60,6 +62,8 @@ public class RandomTeleportationPotion extends Item {
             if (truc == null)
                 continue;
 
+            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            world.playSound(null, truc.getX(), truc.getY(), truc.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
             player.getItemCooldownManager().set(this, cooldown * 10);
             Teleport.teleportToPos(player, truc);
             stack.decrement(1);

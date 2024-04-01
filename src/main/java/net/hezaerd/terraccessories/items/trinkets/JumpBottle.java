@@ -16,7 +16,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
 public class JumpBottle extends TrinketItem {
-    private static final double jumpHeight = 0.6;
+    private static final double jumpHeight = 0.5;
     private static final double particlesSpeed = 0.1;
     private static SoundEvent jumpSound;
     private static DefaultParticleType jumpParticle;

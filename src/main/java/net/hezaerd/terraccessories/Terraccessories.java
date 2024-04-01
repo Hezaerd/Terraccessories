@@ -3,7 +3,6 @@ package net.hezaerd.terraccessories;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +19,8 @@ public class Terraccessories implements ModInitializer {
 				group.addTab(Icon.of(ItemsInit.MAGIC_MIRROR), "Terraccessories", null, true);
 			}).build();
 
-	/*public static final SoundEvent FART = new SoundEvent(id("fart"));*/
-
 	@Override
 	public void onInitialize() {
-
 		FieldRegistrationHandler.register(ItemsInit.class, MOD_ID, false);
 
 		TERRACCESSORIES_GROUP.initialize();

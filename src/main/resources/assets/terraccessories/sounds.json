@@ -1,7 +1,12 @@
 {
-  "my_sound": {
+  "teleportation": {
     "sounds": [
       "terraccessories:teleportation"
+    ]
+  },
+  "fart": {
+    "sounds": [
+      "terraccessories:fart"
     ]
   }
 }
