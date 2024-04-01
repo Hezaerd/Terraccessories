@@ -46,5 +46,7 @@
 
   "item.terraccessories.crate": "Crate",
 
+  "item.terraccessories.aglet": "Aglet",
+
   "item.terraccessories.random_teleportation_potion": "Random Teleportation Potion"
 }

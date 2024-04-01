@@ -8,9 +8,10 @@ import net.hezaerd.terraccessories.items.bucket.BottomlessLavaBucket;
 import net.hezaerd.terraccessories.items.bucket.BottomlessWaterBucket;
 import net.hezaerd.terraccessories.items.mirrors.IceMirror;
 import net.hezaerd.terraccessories.items.mirrors.MagicMirror;
+import net.hezaerd.terraccessories.items.trinkets.Aglet;
 import net.minecraft.item.Item;
 
-public class TerraccessoriesItems implements ItemRegistryContainer {
+public class ItemsInit implements ItemRegistryContainer {
 
     public static final Item MAGIC_MIRROR = new MagicMirror();
     public static final Item ICE_MIRROR = new IceMirror();
@@ -18,5 +19,5 @@ public class TerraccessoriesItems implements ItemRegistryContainer {
     public static final Item BOTTOMLESS_WATER_BUCKET = new BottomlessWaterBucket();
     public static final Item BOTTOMLESS_LAVA_BUCKET = new BottomlessLavaBucket();
     public static final Item RANDOM_TELEPORTATION_POTION = new RandomTeleportationPotion();
-
+    public static final Item AGLET = new Aglet();
 }

@@ -1,8 +1,10 @@
-package net.hezaerd.terraccessories.trinkets;
+package net.hezaerd.terraccessories.items.trinkets;
 
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
+import io.wispforest.owo.itemgroup.OwoItemSettings;
+import net.hezaerd.terraccessories.Terraccessories;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -12,9 +14,8 @@ import net.minecraft.item.ItemStack;
 import java.util.UUID;
 
 public class Aglet extends TrinketItem {
-
-    public Aglet(Settings settings) {
-        super(settings.maxCount(1));
+    public Aglet() {
+        super(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(1));
     }
 
     public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
