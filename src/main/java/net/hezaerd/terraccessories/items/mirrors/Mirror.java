@@ -1,5 +1,6 @@
 package net.hezaerd.terraccessories.items.mirrors;
 
+import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.common.Teleport;
 import net.minecraft.client.item.TooltipContext;
@@ -23,8 +24,8 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class Mirror extends Item {
-    public Mirror(Settings settings) {
-        super(settings.maxCount(1));
+    public Mirror() {
+        super(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(1));
     }
 
     /* Tooltip */

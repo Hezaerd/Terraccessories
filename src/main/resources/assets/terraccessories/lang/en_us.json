@@ -23,6 +23,8 @@
   "text.config.terraccessories.option.mirror.mirror_debuffs.mirror_slowness_duration": "Slowness Duration",
   "text.config.terraccessories.option.mirror.mirror_debuffs.mirror_slowness_duration.tooltip": "How long the slowness debuff lasts",
 
+  "itemGroup.terraccessories.main": "Terraccessories",
+
   "item.terraccessories.magic_mirror": "Magic Mirror",
   "item.terraccessories.ice_mirror": "Ice Mirror",
   "item.terraccessories.mirrors.tooltip": "Gaze in the mirror to return home",

@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories.items;
+package net.hezaerd.terraccessories.trinkets;
 
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.SlotReference;

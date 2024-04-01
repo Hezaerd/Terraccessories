@@ -1,5 +1,7 @@
 package net.hezaerd.terraccessories.items;
 
+import io.wispforest.owo.itemgroup.OwoItemSettings;
+import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.common.Suitable;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -24,8 +26,8 @@ public class DemonConch extends Item {
     /* Properties */
     private static final int cooldown = 200;
 
-    public DemonConch(Settings settings) {
-        super(settings.maxCount(1));
+    public DemonConch() {
+        super(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(1));
     }
 
     /* Tooltip */

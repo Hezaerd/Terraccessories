@@ -1,9 +1,9 @@
 package net.hezaerd.terraccessories.items.bucket;
 
-import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 
 public class BottomlessLavaBucket extends TerraBucket {
-    public BottomlessLavaBucket(Fluid fluid, Settings settings) {
-        super(fluid, settings);
+    public BottomlessLavaBucket() {
+        super(Fluids.LAVA);
     }
 }

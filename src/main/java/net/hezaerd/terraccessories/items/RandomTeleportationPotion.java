@@ -1,5 +1,7 @@
 package net.hezaerd.terraccessories.items;
 
+import io.wispforest.owo.itemgroup.OwoItemSettings;
+import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.common.Suitable;
 import net.hezaerd.terraccessories.common.Teleport;
 import net.minecraft.entity.LivingEntity;
@@ -20,8 +22,8 @@ public class RandomTeleportationPotion extends Item {
     private static int range = 10000;
     private  static int cooldown = 10;
 
-    public RandomTeleportationPotion(Settings settings) {
-        super(settings);
+    public RandomTeleportationPotion() {
+        super(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
     }
 
     @Override

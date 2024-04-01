@@ -1,5 +1,7 @@
 package net.hezaerd.terraccessories.items.bucket;
 
+import io.wispforest.owo.itemgroup.OwoItemSettings;
+import net.hezaerd.terraccessories.Terraccessories;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidDrainable;
@@ -26,8 +28,8 @@ import net.minecraft.world.event.GameEvent;
 public class TerraBucket extends BucketItem {
     private final Fluid fluid;
 
-    public TerraBucket(Fluid fluid, Settings settings) {
-        super(fluid, settings.maxCount(1));
+    public TerraBucket(Fluid fluid) {
+        super(fluid, new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(1));
         this.fluid = fluid;
     }
 
