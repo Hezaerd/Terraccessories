@@ -22,13 +22,24 @@ public class TerraccessoriesConfigModel {
         @Sync(Option.SyncMode.OVERRIDE_CLIENT)
         public boolean mirror_interdimensional = true;
         @Sync(Option.SyncMode.OVERRIDE_CLIENT)
-        public boolean mirror_debuff = true;
-        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
-        @RangeConstraint(min = 0, max = 60)
-        public int mirror_cooldown = 20;
-        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
         @RangeConstraint(min = 0, max = 10)
         public int mirror_cost = 1;
+        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
+        public boolean mirror_debuff = true;
+        @Nest
+        public final NestedMirrorDebuff mirror_debuffs = new NestedMirrorDebuff();
+    }
 
+    public static class NestedMirrorDebuff {
+        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
+        public boolean mirror_blindness = true;
+        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
+        @RangeConstraint(min = 0, max = 20)
+        public int mirror_blindness_duration = 2;
+        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
+        public boolean mirror_slowness = true;
+        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
+        @RangeConstraint(min = 0, max = 20)
+        public int mirror_slowness_duration = 3;
     }
 }

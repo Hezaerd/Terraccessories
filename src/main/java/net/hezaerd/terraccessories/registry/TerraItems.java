@@ -6,6 +6,8 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.hezaerd.terraccessories.items.*;
 import net.hezaerd.terraccessories.items.bucket.BottomlessLavaBucket;
 import net.hezaerd.terraccessories.items.bucket.BottomlessWaterBucket;
+import net.hezaerd.terraccessories.items.mirrors.IceMirror;
+import net.hezaerd.terraccessories.items.mirrors.MagicMirror;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -40,8 +42,8 @@ public class TerraItems {
     public static void register() {
         Registry.register(Registries.ITEM_GROUP, new Identifier("terraccessories", "terraccessories"), ITEM_GROUP);
 
-        Registry.register(Registries.ITEM, new Identifier("terraccessories", "magic_mirror"), MAGIC_MIRROR);
-        Registry.register(Registries.ITEM, new Identifier("terraccessories", "ice_mirror"), ICE_MIRROR);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "mirrors.magic_mirror"), MAGIC_MIRROR);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "mirrors.ice_mirror"), ICE_MIRROR);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "bucket/bottomless_water_bucket"), BOTTOMLESS_WATER_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "bucket/bottomless_lava_bucket"), BOTTOMLESS_LAVA_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "crate"), CRATE);
