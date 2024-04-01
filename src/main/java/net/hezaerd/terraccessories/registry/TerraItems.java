@@ -25,6 +25,7 @@ public class TerraItems {
     public static final Crate CRATE = new Crate(new FabricItemSettings());
     public static final RandomTeleportationPotion RANDOM_TELEPORTATION_POTION = new RandomTeleportationPotion(new FabricItemSettings());
     public  static final DemonConch DEMON_CONCH = new DemonConch(new FabricItemSettings());
+    public  static final Aglet AGLET = new Aglet(new FabricItemSettings());
 
     private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(MAGIC_MIRROR))
@@ -37,6 +38,7 @@ public class TerraItems {
                 entries.add(CRATE);
                 entries.add(RANDOM_TELEPORTATION_POTION);
                 entries.add(DEMON_CONCH);
+                entries.add(AGLET);
             }).build();
 
     public static void register() {
@@ -49,5 +51,6 @@ public class TerraItems {
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "crate"), CRATE);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "random_teleportation_potion"), RANDOM_TELEPORTATION_POTION);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "demon_conch"), DEMON_CONCH);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "aglet"), AGLET);
     }
 }
