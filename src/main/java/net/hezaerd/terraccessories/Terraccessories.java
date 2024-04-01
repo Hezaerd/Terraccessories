@@ -1,5 +1,9 @@
 package net.hezaerd.terraccessories;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,9 +16,14 @@ public class Terraccessories implements ModInitializer {
 
 	public static final net.hezaerd.terraccessories.TerraccessoriesConfig CONFIG = net.hezaerd.terraccessories.TerraccessoriesConfig.createAndLoad();
 
+	public static final Identifier MY_SOUND_ID = new Identifier("terraccessories:teleportation");
+	public static SoundEvent MY_SOUND_EVENT = SoundEvent.of(MY_SOUND_ID);
+
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Hello Fabric world!");
+
+		Registry.register(Registries.SOUND_EVENT, MY_SOUND_ID, MY_SOUND_EVENT);
 		
 		TerraItems.register();
 	}
