@@ -47,6 +47,8 @@
   "item.terraccessories.crate": "Crate",
 
   "item.terraccessories.aglet": "Aglet",
+  "item.terraccessories.jump_bottle": "Cloud In A Bottle",
+  "item.terraccessories.fart_jump_bottle": "Fart In A Bottle",
 
   "item.terraccessories.random_teleportation_potion": "Random Teleportation Potion"
 }
