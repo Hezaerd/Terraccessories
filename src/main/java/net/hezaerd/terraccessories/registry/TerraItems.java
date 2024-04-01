@@ -42,10 +42,10 @@ public class TerraItems {
     public static void register() {
         Registry.register(Registries.ITEM_GROUP, new Identifier("terraccessories", "terraccessories"), ITEM_GROUP);
 
-        Registry.register(Registries.ITEM, new Identifier("terraccessories", "mirrors.magic_mirror"), MAGIC_MIRROR);
-        Registry.register(Registries.ITEM, new Identifier("terraccessories", "mirrors.ice_mirror"), ICE_MIRROR);
-        Registry.register(Registries.ITEM, new Identifier("terraccessories", "bucket/bottomless_water_bucket"), BOTTOMLESS_WATER_BUCKET);
-        Registry.register(Registries.ITEM, new Identifier("terraccessories", "bucket/bottomless_lava_bucket"), BOTTOMLESS_LAVA_BUCKET);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "magic_mirror"), MAGIC_MIRROR);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "ice_mirror"), ICE_MIRROR);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "bottomless_water_bucket"), BOTTOMLESS_WATER_BUCKET);
+        Registry.register(Registries.ITEM, new Identifier("terraccessories", "bottomless_lava_bucket"), BOTTOMLESS_LAVA_BUCKET);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "crate"), CRATE);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "random_teleportation_potion"), RANDOM_TELEPORTATION_POTION);
         Registry.register(Registries.ITEM, new Identifier("terraccessories", "demon_conch"), DEMON_CONCH);

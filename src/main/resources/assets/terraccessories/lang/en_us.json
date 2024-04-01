@@ -23,12 +23,8 @@
   "text.config.terraccessories.option.mirror.mirror_debuffs.mirror_slowness_duration": "Slowness Duration",
   "text.config.terraccessories.option.mirror.mirror_debuffs.mirror_slowness_duration.tooltip": "How long the slowness debuff lasts",
 
-  "item.terraccessories.bucket.bottomless_water_bucket": "Bottomless Water Bucket",
-
-  "item.terraccessories.bucket.bottomless_lava_bucket": "Bottomless Lava Bucket",
-
-  "item.terraccessories.mirrors.magic_mirror": "Magic Mirror",
-  "item.terraccessories.mirrors.ice_mirror": "Ice Mirror",
+  "item.terraccessories.magic_mirror": "Magic Mirror",
+  "item.terraccessories.ice_mirror": "Ice Mirror",
   "item.terraccessories.mirrors.tooltip": "Gaze in the mirror to return home",
   "item.terraccessories.mirrors.success": "You feel a warm sensation",
   "item.terraccessories.mirrors.missing_xp": "You require more experience to use this mirror",
@@ -41,5 +37,12 @@
   "item.terraccessories.demon_conch.already_nether": "The demon conch doesn't seem to work here",
   "item.terraccessories.demon_conch.success": "The air sings with the sound of the underworld",
   "item.terraccessories.demon_conch.fail": "The demon conch remains silent",
-  "item.terraccessories.demon_conch.non_suitable": "Maybe you should try this in a more suitable location"
+  "item.terraccessories.demon_conch.non_suitable": "Maybe you should try this in a more suitable location",
+
+  "item.terraccessories.bottomless_water_bucket": "Bottomless Water Bucket",
+  "item.terraccessories.bottomless_lava_bucket": "Bottomless Lava Bucket",
+
+  "item.terraccessories.crate": "Crate",
+
+  "item.terraccessories.random_teleportation_potion": "Random Teleportation Potion"
 }

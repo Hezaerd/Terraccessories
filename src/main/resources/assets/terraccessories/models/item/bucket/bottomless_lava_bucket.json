@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "terraccessories:item/bucket/bottomless_lava_bucket"
-  }
-}

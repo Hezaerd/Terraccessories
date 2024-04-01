@@ -7,11 +7,11 @@
   ],
   "key": {
     "B": {
-      "item": "minecraft:lava_bucket"
+      "item": "minecraft:water_bucket"
     }
   },
   "result": {
-    "item": "terraccessories:bucket/bottomless_lava_bucket",
+    "item": "terraccessories:bottomless_water_bucket",
     "count": 1
   }
 }
