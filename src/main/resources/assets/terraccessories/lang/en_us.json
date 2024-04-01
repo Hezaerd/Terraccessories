@@ -1,6 +1,21 @@
 {
   "itemGroup.terraccessories": "Terraccessories",
 
+  "text.config.terraccessories.title": "Terraccessories Config",
+  "text.config.terraccessories.section.general": "General",
+  "text.config.terraccessories.option.enable_accessories": "Enable Accessories",
+  "text.config.terraccessories.option.enable_accessories.tooltip": "Enable or disable all accessories",
+  "text.config.terraccessories.section.tools": "Tools",
+  "text.config.terraccessories.category.mirror": "Mirrors",
+  "text.config.terraccessories.option.mirror.mirror_interdimensional": "Allow interdimensional travel",
+  "text.config.terraccessories.option.mirror.mirror_interdimensional.tooltip": "Allow mirrors to teleport between dimensions",
+  "text.config.terraccessories.option.mirror.mirror_debuff": "Apply debuff after use",
+  "text.config.terraccessories.option.mirror.mirror_debuff.tooltip": "Apply debuff after use",
+  "text.config.terraccessories.option.mirror.mirror_cooldown": "Cooldown between uses",
+  "text.config.terraccessories.option.mirror.mirror_cooldown.tooltip": "How many seconds to wait between use",
+  "text.config.terraccessories.option.mirror.mirror_cost": "Level cost per use",
+  "text.config.terraccessories.option.mirror.mirror_cost.tooltip": "How much experience levels are required to use the mirror",
+
   "item.terraccessories.bucket.bottomless_water_bucket": "Bottomless Water Bucket",
 
   "item.terraccessories.bucket.bottomless_lava_bucket": "Bottomless Lava Bucket",
