@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories.items.mirrors;
+package net.hezaerd.terraccessories.items;
 
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
@@ -23,8 +23,8 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class Mirror extends Item {
-    public Mirror() {
+public class MagicMirror extends Item {
+    public MagicMirror() {
         super(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(1));
     }
 
