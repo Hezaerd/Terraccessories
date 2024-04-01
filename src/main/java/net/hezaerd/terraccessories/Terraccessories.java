@@ -16,7 +16,10 @@ public class Terraccessories implements ModInitializer {
 	public static final String MOD_ID = "terraccessories";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final net.hezaerd.terraccessories.TerraccessoriesConfig CONFIG = net.hezaerd.terraccessories.TerraccessoriesConfig.createAndLoad();
-	public static final OwoItemGroup TERRACCESSORIES_GROUP = OwoItemGroup.builder(id("main"), () -> Icon.of(TerraccessoriesItems.DEMON_CONCH)).build();
+	public static final OwoItemGroup TERRACCESSORIES_GROUP = OwoItemGroup.builder(id("main"), () -> Icon.of(TerraccessoriesItems.DEMON_CONCH))
+			.initializer(group -> {
+				group.addTab(Icon.of(TerraccessoriesItems.DEMON_CONCH), "Demon Conch", null, true);
+			}).build();
 
 	@Override
 	public void onInitialize() {
