@@ -1,6 +1,5 @@
 package net.hezaerd.terraccessories.registry;
 
-
 import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
 import net.hezaerd.terraccessories.items.DemonConch;
 import net.hezaerd.terraccessories.items.RandomTeleportationPotion;
@@ -10,6 +9,7 @@ import net.hezaerd.terraccessories.items.mirrors.IceMirror;
 import net.hezaerd.terraccessories.items.mirrors.MagicMirror;
 import net.hezaerd.terraccessories.items.trinkets.Aglet;
 import net.hezaerd.terraccessories.items.trinkets.AkletOfTheWind;
+import net.hezaerd.terraccessories.items.trinkets.HermesBoots;
 import net.minecraft.item.Item;
 
 public class ItemsInit implements ItemRegistryContainer {
@@ -22,4 +22,5 @@ public class ItemsInit implements ItemRegistryContainer {
     public static final Item RANDOM_TELEPORTATION_POTION = new RandomTeleportationPotion();
     public static final Item AGLET = new Aglet();
     public static final Item AKLET_OF_THE_WIND = new AkletOfTheWind();
+    public static final Item HERMES_BOOTS = new HermesBoots();
 }

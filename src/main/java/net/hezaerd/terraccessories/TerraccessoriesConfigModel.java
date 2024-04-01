@@ -6,9 +6,6 @@ import io.wispforest.owo.config.annotation.*;
 @Modmenu(modId = Terraccessories.MOD_ID)
 @Config(name = "terraccessories", wrapperName = "TerraccessoriesConfig")
 public class TerraccessoriesConfigModel {
-    /* General */
-    @SectionHeader("general")
-    public boolean enable_accessories = true;
 
     /* Tools */
     @SectionHeader("tools")
@@ -42,4 +39,12 @@ public class TerraccessoriesConfigModel {
         @RangeConstraint(min = 0, max = 20)
         public int mirror_slowness_duration = 3;
     }
+
+    /* Trinkets */
+    @SectionHeader("trinkets")
+
+    @Sync(Option.SyncMode.OVERRIDE_CLIENT)
+    @RangeConstraint(min = 0, max = 10)
+    public double hermes_boots_speed_bonus = 40;
+    public boolean hermes_boots_sprint_particles = true;
 }
