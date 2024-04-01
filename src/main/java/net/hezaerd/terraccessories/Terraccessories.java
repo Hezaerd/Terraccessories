@@ -21,7 +21,6 @@ public class Terraccessories implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
 		FieldRegistrationHandler.register(ItemsInit.class, MOD_ID, false);
 
 		TERRACCESSORIES_GROUP.initialize();

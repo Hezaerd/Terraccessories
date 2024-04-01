@@ -10,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -25,10 +24,10 @@ import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-public class TerraBucket extends BucketItem {
+public class BottomlessBucket extends BucketItem {
     private final Fluid fluid;
 
-    public TerraBucket(Fluid fluid) {
+    public BottomlessBucket(Fluid fluid) {
         super(fluid, new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(1));
         this.fluid = fluid;
     }
