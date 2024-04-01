@@ -1,7 +1,6 @@
 package net.hezaerd.terraccessories.registry;
 
 import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
-import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.items.DemonConch;
 import net.hezaerd.terraccessories.items.MagicMirror;
 import net.hezaerd.terraccessories.items.RandomTeleportationPotion;
