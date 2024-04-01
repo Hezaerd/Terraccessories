@@ -2,6 +2,7 @@ package net.hezaerd.terraccessories.registry;
 
 import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
 import net.hezaerd.terraccessories.items.DemonConch;
+import net.hezaerd.terraccessories.items.MagicConch;
 import net.hezaerd.terraccessories.items.MagicMirror;
 import net.hezaerd.terraccessories.items.RandomTeleportationPotion;
 import net.hezaerd.terraccessories.items.bucket.BottomlessBucket;
@@ -23,6 +24,8 @@ public class ItemsInit implements ItemRegistryContainer {
     public static final Item JUMP_BOTTLE = new JumpBottle(SoundEvents.BLOCK_FIRE_EXTINGUISH, ParticleTypes.CLOUD);
     public static final Item FART_JUMP_BOTTLE = new JumpBottle(SoundsInit.FART_JUMP, ParticleTypes.CLOUD);
     public static final Item AKLET_OF_THE_WIND = new AkletOfTheWind();
+
+    public  static final Item MAGIC_CONCH = new MagicConch();
     public static final Item HERMES_BOOTS = new HermesBoots();
     public static final Item LUCKY_HORSESHOE = new LuckyHorseshoe();
 }
