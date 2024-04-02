@@ -3,7 +3,7 @@ package net.hezaerd.terraccessories.items;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.common.Teleport;
-import net.hezaerd.terraccessories.registry.SoundsInit;
+import net.hezaerd.terraccessories.registry.SoundInit;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -92,7 +92,7 @@ public class MagicMirror extends Item {
                     if(!player.isCreative()) player.setExperienceLevel(player.experienceLevel - Terraccessories.CONFIG.mirror.mirror_cost());
                     if (Terraccessories.CONFIG.mirror.mirror_debuff()) applyDebuff(player);
                     player.sendMessage(Text.translatable("item.terraccessories.mirrors.success").formatted(Formatting.GREEN), true);
-                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundsInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
                 case 3 -> {
                     player.sendMessage(Text.translatable("item.terraccessories.mirrors.missing_spawn").formatted(Formatting.DARK_RED), true);
