@@ -69,8 +69,8 @@ public class MagicConch extends Item {
 
 
 
-    public void searchForBiome(ServerWorld world, PlayerEntity player, Identifier biomeID, BlockPos pos, ItemStack stack) {
-
+    public void searchForBiome(ServerWorld world, PlayerEntity player, Identifier biomeID, BlockPos pos, ItemStack stack)
+    {
         Optional<Biome> optionalBiome = BiomesUtils.getBiomeForIdentifier(world, biomeID);
         if (optionalBiome.isPresent()) {
             if (worker != null) {
@@ -81,12 +81,18 @@ public class MagicConch extends Item {
         }
     }
 
-    public void succeed(ItemStack stack, PlayerEntity player, int x, int z, int samples ) {
-        Teleport.teleportToPos(player, new BlockPos(x, player.getBlockPos().getY(), z));
+    public void succeed(World world, ItemStack stack, PlayerEntity player, int x, int z, int samples ) {
+        BlockPos newPos = new BlockPos(x, 65, z);
+        Teleport.teleportToPos(player, newPos);
         worker = null;
     }
 
     public void fail() {
         worker = null;
     }
+
+
+
+
+
 }
