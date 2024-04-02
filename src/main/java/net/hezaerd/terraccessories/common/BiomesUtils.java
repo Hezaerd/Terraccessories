@@ -19,7 +19,7 @@ public class BiomesUtils {
     public static int BIOME_SIZE = 4;
     public static int SAMPLE_SIZE_MODIFIER = 16;
     public  static int MAX_SAMPLES_SIZE = 50000;
-    public static  int RADIUS_MODIFIER = 2500;
+    public static  int RADIUS_MODIFIER = 500;
 
     public static Registry<Biome> getBiomeRegistry(World world) {
         return world.getRegistryManager().get(RegistryKeys.BIOME);
