@@ -5,7 +5,7 @@ import net.hezaerd.terraccessories.items.DemonConch;
 import net.hezaerd.terraccessories.items.MagicConch;
 import net.hezaerd.terraccessories.items.MagicMirror;
 import net.hezaerd.terraccessories.items.RandomTeleportationPotion;
-import net.hezaerd.terraccessories.items.bucket.BottomlessBucket;
+import net.hezaerd.terraccessories.items.BottomlessBucket;
 import net.hezaerd.terraccessories.items.trinkets.*;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
