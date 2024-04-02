@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories.items.bucket;
+package net.hezaerd.terraccessories.items;
 
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
