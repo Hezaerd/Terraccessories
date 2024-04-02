@@ -38,16 +38,16 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
         this.player = player;
         this.stack = stack;
         this.startPos = startPos;
-        x = startPos.getX();
-        z = startPos.getZ();
         yValues = MathHelper.stream(startPos.getY(), world.getBottomY() + 1, world.getTopY(), 64).toArray();
         sampleSpace = BiomesUtils.SAMPLE_SIZE_MODIFIER * BiomesUtils.BIOME_SIZE;
         maxSamples = BiomesUtils.MAX_SAMPLES_SIZE;
         maxRadius = BiomesUtils.RADIUS_MODIFIER * BiomesUtils.BIOME_SIZE;
+        x = startPos.getX() + maxRadius;
+        z = startPos.getZ() + maxRadius;
         nextLength = sampleSpace;
         length = 0;
         samples = 0;
-        direction = Direction.UP;
+        direction = Direction.DOWN;
         finished = false;
         biomeID = BiomesUtils.getIdentifierForBiome(world, biome);
         lastRadiusThreshold = 0;
@@ -66,20 +66,20 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
 
     @Override
     public boolean hasWork() {
-        return !finished && getRadius() <= maxRadius && samples <= maxSamples;
+        return !finished && getRadius() >= 0 && samples <= maxSamples;
     }
 
     @Override
     public boolean doWork() {
         if (hasWork()) {
             if (direction == Direction.NORTH) {
-                z -= sampleSpace;
+                z += sampleSpace; // Change "-" to "+" to move from near to far in the North direction
             } else if (direction == Direction.EAST) {
-                x += sampleSpace;
+                x -= sampleSpace; // Change "+" to "-" to move from near to far in the East direction
             } else if (direction == Direction.SOUTH) {
-                z += sampleSpace;
+                z -= sampleSpace; // Change "+" to "-" to move from near to far in the South direction
             } else if (direction == Direction.WEST) {
-                x -= sampleSpace;
+                x += sampleSpace; // Change "-" to "+" to move from near to far in the West direction
             }
 
             int sampleX = BiomeCoords.fromBlock(x);
@@ -98,17 +98,16 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
             samples++;
             length += sampleSpace;
             if (length >= nextLength) {
-                if (direction != Direction.UP) {
+                if (direction != Direction.DOWN) {
                     nextLength += sampleSpace;
-                    direction = direction.rotateYClockwise();
+                    direction = direction.rotateYCounterclockwise(); // Change to counterclockwise rotation
                 } else {
-                    direction = Direction.NORTH;
+                    direction = Direction.NORTH; // Change to initial direction
                 }
                 length = 0;
             }
             int radius = getRadius();
             if (radius > 500 && radius / 500 > lastRadiusThreshold) {
-                
                 lastRadiusThreshold = radius / 500;
             }
         }
@@ -124,7 +123,7 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
     private void succeed() {
         Terraccessories.LOGGER.info("Search succeeded: " + getRadius() + " radius, " + samples + " samples");
         if (!stack.isEmpty() && stack.getItem() == ItemsInit.MAGIC_CONCH) {
-            ((MagicConch) stack.getItem()).succeed(stack, player, x, z, samples);
+            ((MagicConch) stack.getItem()).succeed(world, stack, player, x, z, samples);
         } else {
             Terraccessories.LOGGER.error("Invalid compass after search");
         }
