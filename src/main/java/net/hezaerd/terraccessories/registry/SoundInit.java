@@ -7,7 +7,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
-public class SoundsInit {
+public class SoundInit {
 
     public static final SoundEvent TELEPORTATION = register("teleportation");
     public static final SoundEvent FART_JUMP = register("fart");

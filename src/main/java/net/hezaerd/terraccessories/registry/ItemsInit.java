@@ -22,7 +22,7 @@ public class ItemsInit implements ItemRegistryContainer {
     public static final Item RANDOM_TELEPORTATION_POTION = new RandomTeleportationPotion();
     public static final Item AGLET = new Aglet();
     public static final Item JUMP_BOTTLE = new JumpBottle(SoundEvents.BLOCK_FIRE_EXTINGUISH, ParticleTypes.CLOUD);
-    public static final Item FART_JUMP_BOTTLE = new JumpBottle(SoundsInit.FART_JUMP, ParticleTypes.CLOUD);
+    public static final Item FART_JUMP_BOTTLE = new JumpBottle(SoundInit.FART_JUMP, ParticleTypes.CLOUD);
     public static final Item AKLET_OF_THE_WIND = new AkletOfTheWind();
 
     public  static final Item MAGIC_CONCH = new MagicConch();
