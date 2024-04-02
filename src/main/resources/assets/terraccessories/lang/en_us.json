@@ -51,8 +51,10 @@
   "item.terraccessories.fart_jump_bottle": "Fart In A Bottle",
   "item.terraccessories.aklet_of_the_wind": "Aklet of the Wind",
   "item.terraccessories.lucky_horseshoe": "Lucky Horseshoe",
-
+  "item.terraccessories.band_of_regeneration": "Band of Regeneration",
   "item.terraccessories.random_teleportation_potion": "Random Teleportation Potion",
 
-  "block.terraccessories.tinkerer_workshop": "Tinkerer Workshop"
+  "block.terraccessories.tinkerer_workshop": "Tinkerer Workshop",
+
+  "effect.terraccessories.accessories_regeneration": "Regeneration"
 }

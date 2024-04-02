@@ -5,6 +5,7 @@ import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import net.hezaerd.terraccessories.registry.BlockInit;
 import net.hezaerd.terraccessories.registry.ScreenHandlerInit;
+import net.hezaerd.terraccessories.registry.StatusEffectsInit;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +28,8 @@ public class Terraccessories implements ModInitializer {
 
 		FieldRegistrationHandler.register(ItemsInit.class, MOD_ID, false);
 		FieldRegistrationHandler.register(BlockInit.class, MOD_ID, true);
+
+		StatusEffectsInit.init();
 
 		TERRACCESSORIES_GROUP.initialize();
 	}
