@@ -28,4 +28,5 @@ public class ItemsInit implements ItemRegistryContainer {
     public  static final Item MAGIC_CONCH = new MagicConch();
     public static final Item HERMES_BOOTS = new HermesBoots();
     public static final Item LUCKY_HORSESHOE = new LuckyHorseshoe();
+    public static final Item BAND_OF_REGENERATION = new BandOfRegeneration();
 }
