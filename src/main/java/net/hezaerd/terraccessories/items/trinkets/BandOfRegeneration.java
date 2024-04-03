@@ -4,7 +4,7 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
-import net.hezaerd.terraccessories.registry.StatusEffectsInit;
+import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -34,13 +34,13 @@ public class BandOfRegeneration extends TrinketItem {
         }
 
         if (entity instanceof PlayerEntity player) {
-            StatusEffectInstance effect = player.getStatusEffect(StatusEffectsInit.ACCESSORIES_REGENERATION);
+            StatusEffectInstance effect = player.getStatusEffect(ModStatusEffect.ACCESSORIES_REGENERATION);
 
             if (effect != null) {
                 int amplifier = effect.getAmplifier();
-                player.addStatusEffect(new StatusEffectInstance(StatusEffectsInit.ACCESSORIES_REGENERATION, -1, amplifier + 1, false, false, false));
+                player.addStatusEffect(new StatusEffectInstance(ModStatusEffect.ACCESSORIES_REGENERATION, -1, amplifier + 1, false, false, false));
             } else {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffectsInit.ACCESSORIES_REGENERATION, -1, 0, false, false, false));
+                player.addStatusEffect(new StatusEffectInstance(ModStatusEffect.ACCESSORIES_REGENERATION, -1, 0, false, false, false));
             }
         }
     }
@@ -52,15 +52,15 @@ public class BandOfRegeneration extends TrinketItem {
         }
 
         if (entity instanceof PlayerEntity player) {
-            StatusEffectInstance effect = player.getStatusEffect(StatusEffectsInit.ACCESSORIES_REGENERATION);
+            StatusEffectInstance effect = player.getStatusEffect(ModStatusEffect.ACCESSORIES_REGENERATION);
 
             if (effect != null) {
                 int amplifier = effect.getAmplifier();
 
-                player.removeStatusEffect(StatusEffectsInit.ACCESSORIES_REGENERATION);
+                player.removeStatusEffect(ModStatusEffect.ACCESSORIES_REGENERATION);
 
                 if (amplifier != 0) {
-                    player.addStatusEffect(new StatusEffectInstance(StatusEffectsInit.ACCESSORIES_REGENERATION, -1, amplifier - 1, false, false, false));
+                    player.addStatusEffect(new StatusEffectInstance(ModStatusEffect.ACCESSORIES_REGENERATION, -1, amplifier - 1, false, false, false));
                 }
             }
         }

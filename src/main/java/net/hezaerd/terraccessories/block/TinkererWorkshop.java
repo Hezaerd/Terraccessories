@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class TinkererWorkshop extends BlockWithEntity {
     public TinkererWorkshop() {
-        super(FabricBlockSettings.copyOf(Blocks.CRAFTING_TABLE));
+        super(FabricBlockSettings.copyOf(Blocks.CRAFTING_TABLE).nonOpaque());
     }
 
     @Override
