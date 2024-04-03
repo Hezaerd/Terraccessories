@@ -7,6 +7,7 @@ import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.recipe.ModRecipe;
 import net.hezaerd.terraccessories.screen.ModScreenHandler;
 import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
+import net.hezaerd.terraccessories.utils.Wisdom;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +28,13 @@ public class Terraccessories implements ModInitializer {
 	public void onInitialize() {
 		ModScreenHandler.init();
 		ModRecipe.register();
-
 		FieldRegistrationHandler.register(ModItems.class, MOD_ID, false);
 		FieldRegistrationHandler.register(ModBlock.class, MOD_ID, true);
-
 		ModStatusEffect.init();
 
 		TERRACCESSORIES_GROUP.initialize();
+
+		Wisdom.spread();
 	}
 
 	public static Identifier id(String path) {
