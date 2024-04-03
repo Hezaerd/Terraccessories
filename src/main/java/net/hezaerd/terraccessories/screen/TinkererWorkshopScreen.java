@@ -2,6 +2,7 @@ package net.hezaerd.terraccessories.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.hezaerd.terraccessories.Terraccessories;
+import net.hezaerd.terraccessories.utils.LibMod;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -10,7 +11,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class TinkererWorkshopScreen extends HandledScreen<TinkererScreenHandler> {
-    private static final Identifier TEXTURE = new Identifier(Terraccessories.MOD_ID, "textures/gui/tinkerer_workshop.png");
+    private static final Identifier TEXTURE = new Identifier(LibMod.MOD_ID, "textures/gui/tinkerer_workshop.png");
 
     public TinkererWorkshopScreen(TinkererScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

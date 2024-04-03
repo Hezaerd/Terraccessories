@@ -3,6 +3,7 @@ package net.hezaerd.terraccessories.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.hezaerd.terraccessories.Terraccessories;
+import net.hezaerd.terraccessories.utils.LibMod;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -78,12 +79,12 @@ public class TinkererWorkshopRecipe implements Recipe<SimpleInventory> {
 
     public static class Type implements RecipeType<TinkererWorkshopRecipe> {
         public static final Type INSTANCE = new Type();
-        public static final Identifier ID = Terraccessories.id("tinkerer_workshop_recipe");
+        public static final Identifier ID = LibMod.id("tinkerer_workshop_recipe");
     }
 
     public static class Serializer implements RecipeSerializer<TinkererWorkshopRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final Identifier ID = Terraccessories.id("tinkerer_workshop_recipe");
+        public static final Identifier ID = LibMod.id("tinkerer_workshop_recipe");
 
         @Override
         public TinkererWorkshopRecipe read(Identifier id, JsonObject json) {

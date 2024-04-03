@@ -3,8 +3,9 @@ package net.hezaerd.terraccessories.config;
 import io.wispforest.owo.config.Option;
 import io.wispforest.owo.config.annotation.*;
 import net.hezaerd.terraccessories.Terraccessories;
+import net.hezaerd.terraccessories.utils.LibMod;
 
-@Modmenu(modId = Terraccessories.MOD_ID)
+@Modmenu(modId = LibMod.MOD_ID)
 @Config(name = "terraccessories", wrapperName = "TerraccessoriesConfig")
 public class TerraccessoriesConfigModel {
 

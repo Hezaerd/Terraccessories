@@ -7,6 +7,7 @@ import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.recipe.ModRecipe;
 import net.hezaerd.terraccessories.screen.ModScreenHandler;
 import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
+import net.hezaerd.terraccessories.utils.LibMod;
 import net.hezaerd.terraccessories.utils.Wisdom;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -16,10 +17,11 @@ import net.fabricmc.api.ModInitializer;
 import net.hezaerd.terraccessories.items.ModItems;
 
 public class Terraccessories implements ModInitializer {
-	public static final String MOD_ID = "terraccessories";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final net.hezaerd.terraccessories.config.TerraccessoriesConfig CONFIG = net.hezaerd.terraccessories.config.TerraccessoriesConfig.createAndLoad();
-	public static final OwoItemGroup TERRACCESSORIES_GROUP = OwoItemGroup.builder(id("main"), () -> Icon.of(ModItems.MAGIC_MIRROR))
+    public static final Logger LOGGER = LoggerFactory.getLogger(LibMod.MOD_ID);
+	public static final net.hezaerd.terraccessories.config.TerraccessoriesConfig CONFIG =
+			net.hezaerd.terraccessories.config.TerraccessoriesConfig.createAndLoad();
+
+	public static final OwoItemGroup TERRACCESSORIES_GROUP = OwoItemGroup.builder(LibMod.id("main"), () -> Icon.of(ModItems.MAGIC_MIRROR))
 			.initializer(group -> {
 				group.addTab(Icon.of(ModItems.MAGIC_MIRROR), "Terraccessories", null, true);
 			}).build();
@@ -28,16 +30,12 @@ public class Terraccessories implements ModInitializer {
 	public void onInitialize() {
 		ModScreenHandler.init();
 		ModRecipe.register();
-		FieldRegistrationHandler.register(ModItems.class, MOD_ID, false);
-		FieldRegistrationHandler.register(ModBlock.class, MOD_ID, true);
+		FieldRegistrationHandler.register(ModItems.class, LibMod.MOD_ID, false);
+		FieldRegistrationHandler.register(ModBlock.class, LibMod.MOD_ID, true);
 		ModStatusEffect.init();
 
 		TERRACCESSORIES_GROUP.initialize();
 
 		Wisdom.spread();
-	}
-
-	public static Identifier id(String path) {
-		return new Identifier(MOD_ID, path);
 	}
 }
