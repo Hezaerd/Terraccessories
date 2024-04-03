@@ -12,15 +12,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.fabricmc.api.ModInitializer;
-import net.hezaerd.terraccessories.registry.ItemsInit;
+import net.hezaerd.terraccessories.items.ModItems;
 
 public class Terraccessories implements ModInitializer {
 	public static final String MOD_ID = "terraccessories";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final net.hezaerd.terraccessories.config.TerraccessoriesConfig CONFIG = net.hezaerd.terraccessories.config.TerraccessoriesConfig.createAndLoad();
-	public static final OwoItemGroup TERRACCESSORIES_GROUP = OwoItemGroup.builder(id("main"), () -> Icon.of(ItemsInit.MAGIC_MIRROR))
+	public static final OwoItemGroup TERRACCESSORIES_GROUP = OwoItemGroup.builder(id("main"), () -> Icon.of(ModItems.MAGIC_MIRROR))
 			.initializer(group -> {
-				group.addTab(Icon.of(ItemsInit.MAGIC_MIRROR), "Terraccessories", null, true);
+				group.addTab(Icon.of(ModItems.MAGIC_MIRROR), "Terraccessories", null, true);
 			}).build();
 
 	@Override
@@ -28,7 +28,7 @@ public class Terraccessories implements ModInitializer {
 		ScreenHandlerInit.init();
 		RecipesInit.register();
 
-		FieldRegistrationHandler.register(ItemsInit.class, MOD_ID, false);
+		FieldRegistrationHandler.register(ModItems.class, MOD_ID, false);
 		FieldRegistrationHandler.register(BlockInit.class, MOD_ID, true);
 
 		ModStatusEffect.init();

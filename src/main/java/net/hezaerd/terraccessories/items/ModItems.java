@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories.registry;
+package net.hezaerd.terraccessories.items;
 
 import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
 import net.hezaerd.terraccessories.items.DemonConch;
@@ -7,12 +7,13 @@ import net.hezaerd.terraccessories.items.MagicMirror;
 import net.hezaerd.terraccessories.items.RandomTeleportationPotion;
 import net.hezaerd.terraccessories.items.BottomlessBucket;
 import net.hezaerd.terraccessories.items.trinkets.*;
+import net.hezaerd.terraccessories.registry.SoundInit;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
-public class ItemsInit implements ItemRegistryContainer {
+public class ModItems implements ItemRegistryContainer {
 
     /* Tools */
     public static final Item MAGIC_MIRROR = new MagicMirror();

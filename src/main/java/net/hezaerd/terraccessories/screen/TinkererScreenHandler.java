@@ -1,10 +1,6 @@
 package net.hezaerd.terraccessories.screen;
 
-import io.wispforest.owo.client.screens.ScreenUtils;
-import io.wispforest.owo.client.screens.SlotGenerator;
-import io.wispforest.owo.client.screens.ValidatingSlot;
 import net.hezaerd.terraccessories.registry.BlockInit;
-import net.hezaerd.terraccessories.registry.ItemsInit;
 import net.hezaerd.terraccessories.registry.ScreenHandlerInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

@@ -1,13 +1,10 @@
 package net.hezaerd.terraccessories.block.entity;
 
 import io.wispforest.owo.util.ImplementedInventory;
-import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.recipe.TinkererWorkshopRecipe;
 import net.hezaerd.terraccessories.registry.BlockInit;
-import net.hezaerd.terraccessories.registry.ItemsInit;
 import net.hezaerd.terraccessories.screen.TinkererScreenHandler;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -15,7 +12,6 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
