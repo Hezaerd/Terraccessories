@@ -97,8 +97,7 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
         Optional<TinkererWorkshopRecipe> recipe = getCurrentRecipe();
 
         this.removeStack(INPUT_SLOT, 1);
-
-        this.setStack(OUTPUT_SLOT, new ItemStack(ItemsInit.MAGIC_MIRROR, 1));
+        this.setStack(OUTPUT_SLOT, new ItemStack(recipe.get().getResult(null).getItem(), getStack(OUTPUT_SLOT).getCount() + recipe.get().getResult(null).getCount()));
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {
@@ -114,10 +113,9 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
     }
 
     private boolean hasRecipe() {
-        ItemStack result = new ItemStack(ItemsInit.DEMON_CONCH);
-        boolean hasInput = getStack(INPUT_SLOT).getItem() == Items.BLAZE_ROD;
+        Optional<TinkererWorkshopRecipe> recipe = getCurrentRecipe();
 
-        return hasInput && canInsertAmountIntoOutputSlot(result) && canInsertItemIntoOutputSlot(result.getItem());
+        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().getResult(null)) && canInsertItemIntoOutputSlot(recipe.get().getResult(null).getItem());
     }
 
     @Override
