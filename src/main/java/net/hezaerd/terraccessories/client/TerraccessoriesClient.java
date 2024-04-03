@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories;
+package net.hezaerd.terraccessories.client;
 
 import net.fabricmc.api.ClientModInitializer;
 

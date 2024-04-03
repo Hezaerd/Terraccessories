@@ -21,7 +21,7 @@
 			"net.hezaerd.terraccessories.Terraccessories"
 		],
 		"client": [
-			"net.hezaerd.terraccessories.TerraccessoriesClient"
+          "net.hezaerd.terraccessories.client.TerraccessoriesClient"
 		],
 		"fabric-datagen": [
 			"net.hezaerd.terraccessories.TerraccessoriesDataGenerator"
