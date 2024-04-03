@@ -5,7 +5,7 @@ import io.wispforest.owo.registration.reflect.BlockEntityRegistryContainer;
 import io.wispforest.owo.registration.reflect.BlockRegistryContainer;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.hezaerd.terraccessories.Terraccessories;
-import net.hezaerd.terraccessories.block.custom.TinkererWorkshop;
+import net.hezaerd.terraccessories.block.TinkererWorkshop;
 import net.hezaerd.terraccessories.block.entity.TinkererWorkshopEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
