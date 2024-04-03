@@ -1,15 +1,15 @@
-package net.hezaerd.terraccessories.statusEffect;
+package net.hezaerd.terraccessories.statuseffect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
-public class ModStatusEffect extends StatusEffect {
+public class TerraStatusEffect extends StatusEffect {
 
     private boolean instant;
     private boolean isRegistered;
 
-    public ModStatusEffect(StatusEffectCategory type, int color, boolean isInstant) {
+    public TerraStatusEffect(StatusEffectCategory type, int color, boolean isInstant) {
         super(type, color);
         this.instant = isInstant;
     }
@@ -41,7 +41,7 @@ public class ModStatusEffect extends StatusEffect {
         }
     }
 
-    public ModStatusEffect onRegister() {
+    public TerraStatusEffect onRegister() {
         this.isRegistered = true;
         return this;
     }
