@@ -1,9 +1,8 @@
-package net.hezaerd.terraccessories.registry;
+package net.hezaerd.terraccessories.statuseffect;
 
 import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.utils.LibMod;
-import net.hezaerd.terraccessories.statusEffect.ModStatusEffect;
-import net.hezaerd.terraccessories.statusEffect.effects.AccessoriesRegenerationEffect;
+import net.hezaerd.terraccessories.statuseffect.effects.AccessoriesRegenerationEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -11,19 +10,19 @@ import net.minecraft.util.Identifier;
 
 import java.lang.reflect.Field;
 
-public class StatusEffectsInit {
+public class ModStatusEffect {
 
     // Non-instantaneous status effects
-    public static ModStatusEffect ACCESSORIES_REGENERATION = new AccessoriesRegenerationEffect(StatusEffectCategory.BENEFICIAL, 0xc7106e, false);
+    public static TerraStatusEffect ACCESSORIES_REGENERATION = new AccessoriesRegenerationEffect(StatusEffectCategory.BENEFICIAL, 0xc7106e, false);
 
     public static void init() {
         try {
             int registered = 0;
 
-            for (Field field : StatusEffectsInit.class.getDeclaredFields()) {
-                if (ModStatusEffect.class.isAssignableFrom(field.getType())) {
+            for (Field field : ModStatusEffect.class.getDeclaredFields()) {
+                if (TerraStatusEffect.class.isAssignableFrom(field.getType())) {
                     Identifier id = LibMod.id(field.getName().toLowerCase());
-                    Registry.register(Registries.STATUS_EFFECT, id, (ModStatusEffect) field.get(null)).onRegister();
+                    Registry.register(Registries.STATUS_EFFECT, id, (TerraStatusEffect) field.get(null)).onRegister();
 
                     Terraccessories.LOGGER.debug("Registered status effect: " + id);
                     registered++;

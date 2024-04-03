@@ -1,11 +1,11 @@
-package net.hezaerd.terraccessories.statusEffect.effects;
+package net.hezaerd.terraccessories.statuseffect.effects;
 
-import net.hezaerd.terraccessories.statusEffect.ModStatusEffect;
+import net.hezaerd.terraccessories.statuseffect.TerraStatusEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class AccessoriesRegenerationEffect extends ModStatusEffect {
+public class AccessoriesRegenerationEffect extends TerraStatusEffect {
 
     public AccessoriesRegenerationEffect(StatusEffectCategory type, int color, boolean isInstant) {
         super(type, color, isInstant);
