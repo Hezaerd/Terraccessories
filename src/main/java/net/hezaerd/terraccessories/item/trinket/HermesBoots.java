@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories.items.trinkets;
+package net.hezaerd.terraccessories.item.trinket;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;

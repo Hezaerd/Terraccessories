@@ -1,14 +1,14 @@
-package net.hezaerd.terraccessories.items;
+package net.hezaerd.terraccessories.item;
 
 import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
-import net.hezaerd.terraccessories.items.trinkets.*;
+import net.hezaerd.terraccessories.item.trinket.*;
 import net.hezaerd.terraccessories.sound.ModSound;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
-public class ModItems implements ItemRegistryContainer {
+public class ModItem implements ItemRegistryContainer {
 
     /* Tools */
     public static final Item MAGIC_MIRROR = new MagicMirror();

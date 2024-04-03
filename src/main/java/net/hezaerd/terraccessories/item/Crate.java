@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories.items;
+package net.hezaerd.terraccessories.item;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

@@ -1,9 +1,8 @@
 package net.hezaerd.terraccessories.workers;
 
-import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.utils.BiomesUtils;
-import net.hezaerd.terraccessories.items.MagicConch;
-import net.hezaerd.terraccessories.items.ModItems;
+import net.hezaerd.terraccessories.item.MagicConch;
+import net.hezaerd.terraccessories.item.ModItem;
 import net.hezaerd.terraccessories.utils.Log;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -55,7 +54,7 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
     }
 
     public void start() {
-        if (!stack.isEmpty() && stack.getItem() == ModItems.MAGIC_CONCH) {
+        if (!stack.isEmpty() && stack.getItem() == ModItem.MAGIC_CONCH) {
             if (maxRadius > 0 && sampleSpace > 0) {
                 Log.i("Starting search: " + sampleSpace + " sample space, " + maxSamples + " max samples, " + maxRadius + " max radius");
                 WorkerManager.addWorker(this);
@@ -123,7 +122,7 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
 
     private void succeed() {
         Log.i("Search succeeded: " + getRadius() + " radius, " + samples + " samples");
-        if (!stack.isEmpty() && stack.getItem() == ModItems.MAGIC_CONCH) {
+        if (!stack.isEmpty() && stack.getItem() == ModItem.MAGIC_CONCH) {
             ((MagicConch) stack.getItem()).succeed(world, stack, player, x, z, samples);
         } else {
             Log.e("Invalid compass after search");
@@ -133,7 +132,7 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
 
     private void fail() {
         Log.i("Search failed: " + getRadius() + " radius, " + samples + " samples");
-        if (!stack.isEmpty() && stack.getItem() == ModItems.MAGIC_CONCH) {
+        if (!stack.isEmpty() && stack.getItem() == ModItem.MAGIC_CONCH) {
             ((MagicConch) stack.getItem()).fail();
         } else {
             Log.e("Invalid compass after search");
