@@ -2,6 +2,7 @@ package net.hezaerd.terraccessories.block.entity;
 
 import io.wispforest.owo.util.ImplementedInventory;
 import net.hezaerd.terraccessories.recipe.TinkererWorkshopRecipe;
+
 import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.screen.TinkererScreenHandler;
 import net.minecraft.block.BlockState;
@@ -28,7 +29,8 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
 
     private static final int INPUT_SLOT = 0;
-    private static final int OUTPUT_SLOT = 1;
+    private static final int INPUT_SLOT_2 = 1;
+    private static final int OUTPUT_SLOT = 2;
 
     public TinkererWorkshopEntity(BlockPos pos, BlockState state) {
         super(ModBlock.Entities.TINKERER_WORKSHOP, pos, state);
@@ -93,6 +95,7 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
         Optional<TinkererWorkshopRecipe> recipe = getCurrentRecipe();
 
         this.removeStack(INPUT_SLOT, 1);
+        this.removeStack(INPUT_SLOT_2, 1);
         this.setStack(OUTPUT_SLOT, new ItemStack(recipe.get().getResult(null).getItem(), getStack(OUTPUT_SLOT).getCount() + recipe.get().getResult(null).getCount()));
     }
 

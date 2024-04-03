@@ -3,6 +3,9 @@
   "ingredients": [
     {
       "item": "minecraft:coal"
+    },
+    {
+      "item": "minecraft:stick"
     }
   ],
   "output": {

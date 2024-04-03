@@ -3,6 +3,9 @@
   "ingredients": [
     {
       "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:diamond"
     }
   ],
   "output": {

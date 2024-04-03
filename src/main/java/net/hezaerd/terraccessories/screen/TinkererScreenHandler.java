@@ -23,8 +23,11 @@ public class TinkererScreenHandler extends ScreenHandler {
         this.context = context;
         this.inventory = entityInventory;
 
-        this.addSlot(new Slot(entityInventory, 0, 80, 11));
-        this.addSlot(new Slot(entityInventory, 1, 80, 59));
+        this.addSlot(new Slot(entityInventory, 0, 51, 21));
+        this.addSlot(new Slot(entityInventory, 1, 109, 21));
+        this.addSlot(new Slot(entityInventory, 2, 80, 41));
+
+        this.slots.get(2).markDirty();
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
