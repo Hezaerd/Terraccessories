@@ -46,6 +46,7 @@
 
   "item.terraccessories.crate": "Crate",
 
+  "item.terraccessories.accessory.unusable": "You already have a better accessory equipped, no effect applied",
   "item.terraccessories.aglet": "Aglet",
   "item.terraccessories.jump_bottle": "Cloud In A Bottle",
   "item.terraccessories.fart_jump_bottle": "Fart In A Bottle",
