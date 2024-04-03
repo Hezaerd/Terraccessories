@@ -32,5 +32,5 @@ public class ItemsInit implements ItemRegistryContainer {
     public static final Item AKLET_OF_THE_WIND = new AkletOfTheWind();
     public static final Item HERMES_BOOTS = new HermesBoots();
     public static final Item LUCKY_HORSESHOE = new LuckyHorseshoe();
-    public static final Item BAND_OF_REGENERATION = new BandOfRegeneration();
+//    public static final Item BAND_OF_REGENERATION = new BandOfRegeneration(); // STAND-BY
 }

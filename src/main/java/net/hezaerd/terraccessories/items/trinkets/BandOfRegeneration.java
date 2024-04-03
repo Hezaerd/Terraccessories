@@ -4,7 +4,7 @@ import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketItem;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
-import net.hezaerd.terraccessories.registry.StatusEffectsInit;
+import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -12,6 +12,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -28,20 +30,39 @@ public class BandOfRegeneration extends TrinketItem {
     }
 
     @Override
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (isUsable(user)) {
+            return super.use(world, user, hand);
+        }
+
+        return TypedActionResult.fail(user.getStackInHand(hand));
+    }
+
+    private boolean isUsable(PlayerEntity player) {
+        StatusEffectInstance effect = player.getStatusEffect(ModStatusEffect.ACCESSORIES_REGENERATION);
+
+        if (effect != null) {
+            int amplifier = effect.getAmplifier();
+
+            if (amplifier >= 0) {
+                player.sendMessage(Text.translatable("item.terraccessories.accessory.unusable").formatted(Formatting.RED), true);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    @Override
     public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
         if (entity.getWorld().isClient()) {
             return;
         }
 
-        if (entity instanceof PlayerEntity player) {
-            StatusEffectInstance effect = player.getStatusEffect(StatusEffectsInit.ACCESSORIES_REGENERATION);
+        if (entity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) entity;
 
-            if (effect != null) {
-                int amplifier = effect.getAmplifier();
-                player.addStatusEffect(new StatusEffectInstance(StatusEffectsInit.ACCESSORIES_REGENERATION, -1, amplifier + 1, false, false, false));
-            } else {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffectsInit.ACCESSORIES_REGENERATION, -1, 0, false, false, false));
-            }
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffect.ACCESSORIES_REGENERATION, -1, 0));
         }
     }
 
@@ -51,18 +72,10 @@ public class BandOfRegeneration extends TrinketItem {
             return;
         }
 
-        if (entity instanceof PlayerEntity player) {
-            StatusEffectInstance effect = player.getStatusEffect(StatusEffectsInit.ACCESSORIES_REGENERATION);
+        if (entity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) entity;
 
-            if (effect != null) {
-                int amplifier = effect.getAmplifier();
-
-                player.removeStatusEffect(StatusEffectsInit.ACCESSORIES_REGENERATION);
-
-                if (amplifier != 0) {
-                    player.addStatusEffect(new StatusEffectInstance(StatusEffectsInit.ACCESSORIES_REGENERATION, -1, amplifier - 1, false, false, false));
-                }
-            }
+            player.removeStatusEffect(ModStatusEffect.ACCESSORIES_REGENERATION);
         }
     }
 }
