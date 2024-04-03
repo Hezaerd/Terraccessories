@@ -3,7 +3,7 @@ package net.hezaerd.terraccessories.items;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.utils.Suitable;
-import net.hezaerd.terraccessories.registry.SoundInit;
+import net.hezaerd.terraccessories.sound.ModSound;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -87,9 +87,9 @@ public class DemonConch extends Item {
         }
 
         player.sendMessage(Text.translatable("item.terraccessories.demon_conch.success").formatted(Formatting.RED), true);
-        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), ModSound.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
         Teleport.changeDimensionAndTeleport(player, serverNetherWorld, netherSuitablePos);
-        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundInit.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), ModSound.TELEPORTATION, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
         return super.finishUsing(stack, world, user);
     }

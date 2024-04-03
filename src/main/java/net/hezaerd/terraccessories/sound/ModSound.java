@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories.registry;
+package net.hezaerd.terraccessories.sound;
 
 
 import net.hezaerd.terraccessories.Terraccessories;
@@ -7,7 +7,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
-public class SoundInit {
+public class ModSound {
 
     public static final SoundEvent TELEPORTATION = register("teleportation");
     public static final SoundEvent FART_JUMP = register("fart");
