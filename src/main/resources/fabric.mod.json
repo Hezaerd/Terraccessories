@@ -22,9 +22,6 @@
 		],
 		"client": [
           "net.hezaerd.terraccessories.client.TerraccessoriesClient"
-		],
-		"fabric-datagen": [
-			"net.hezaerd.terraccessories.TerraccessoriesDataGenerator"
 		]
 	},
 	"mixins": [
