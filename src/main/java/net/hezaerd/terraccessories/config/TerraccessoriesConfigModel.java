@@ -1,7 +1,8 @@
-package net.hezaerd.terraccessories;
+package net.hezaerd.terraccessories.config;
 
 import io.wispforest.owo.config.Option;
 import io.wispforest.owo.config.annotation.*;
+import net.hezaerd.terraccessories.Terraccessories;
 
 @Modmenu(modId = Terraccessories.MOD_ID)
 @Config(name = "terraccessories", wrapperName = "TerraccessoriesConfig")

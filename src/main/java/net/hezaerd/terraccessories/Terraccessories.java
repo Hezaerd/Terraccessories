@@ -17,7 +17,7 @@ import net.hezaerd.terraccessories.registry.ItemsInit;
 public class Terraccessories implements ModInitializer {
 	public static final String MOD_ID = "terraccessories";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final net.hezaerd.terraccessories.TerraccessoriesConfig CONFIG = net.hezaerd.terraccessories.TerraccessoriesConfig.createAndLoad();
+	public static final net.hezaerd.terraccessories.config.TerraccessoriesConfig CONFIG = net.hezaerd.terraccessories.config.TerraccessoriesConfig.createAndLoad();
 	public static final OwoItemGroup TERRACCESSORIES_GROUP = OwoItemGroup.builder(id("main"), () -> Icon.of(ItemsInit.MAGIC_MIRROR))
 			.initializer(group -> {
 				group.addTab(Icon.of(ItemsInit.MAGIC_MIRROR), "Terraccessories", null, true);
