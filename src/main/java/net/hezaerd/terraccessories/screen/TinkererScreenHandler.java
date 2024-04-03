@@ -1,7 +1,6 @@
 package net.hezaerd.terraccessories.screen;
 
 import net.hezaerd.terraccessories.block.ModBlock;
-import net.hezaerd.terraccessories.registry.ScreenHandlerInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -20,7 +19,7 @@ public class TinkererScreenHandler extends ScreenHandler {
     }
 
     public TinkererScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, Inventory entityInventory) {
-        super(ScreenHandlerInit.TINKERER_WORKSHOP_SCREEN_HANDLER_TYPE, syncId);
+        super(ModScreenHandler.TINKERER_WORKSHOP_SCREEN_HANDLER_TYPE, syncId);
         this.context = context;
         this.inventory = entityInventory;
 
