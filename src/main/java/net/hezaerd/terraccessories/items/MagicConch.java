@@ -2,16 +2,13 @@ package net.hezaerd.terraccessories.items;
 
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
-import net.hezaerd.terraccessories.common.BiomesUtils;
-import net.hezaerd.terraccessories.common.Teleport;
+import net.hezaerd.terraccessories.utils.BiomesUtils;
+import net.hezaerd.terraccessories.utils.Teleport;
 import net.hezaerd.terraccessories.workers.BiomeSearchWorker;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;

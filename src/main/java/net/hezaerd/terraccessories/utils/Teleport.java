@@ -1,4 +1,4 @@
-package net.hezaerd.terraccessories.common;
+package net.hezaerd.terraccessories.utils;
 
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.entity.LivingEntity;

@@ -1,7 +1,7 @@
 package net.hezaerd.terraccessories.registry;
 
 import net.hezaerd.terraccessories.Terraccessories;
-import net.hezaerd.terraccessories.common.LibMod;
+import net.hezaerd.terraccessories.utils.LibMod;
 import net.hezaerd.terraccessories.statusEffect.ModStatusEffect;
 import net.hezaerd.terraccessories.statusEffect.effects.AccessoriesRegenerationEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;

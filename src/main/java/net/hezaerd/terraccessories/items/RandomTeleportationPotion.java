@@ -2,8 +2,8 @@ package net.hezaerd.terraccessories.items;
 
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
-import net.hezaerd.terraccessories.common.Suitable;
-import net.hezaerd.terraccessories.common.Teleport;
+import net.hezaerd.terraccessories.utils.Suitable;
+import net.hezaerd.terraccessories.utils.Teleport;
 import net.hezaerd.terraccessories.registry.SoundInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,7 +1,7 @@
 package net.hezaerd.terraccessories.workers;
 
 import net.hezaerd.terraccessories.Terraccessories;
-import net.hezaerd.terraccessories.common.BiomesUtils;
+import net.hezaerd.terraccessories.utils.BiomesUtils;
 import net.hezaerd.terraccessories.items.MagicConch;
 import net.hezaerd.terraccessories.registry.ItemsInit;
 import net.minecraft.entity.player.PlayerEntity;

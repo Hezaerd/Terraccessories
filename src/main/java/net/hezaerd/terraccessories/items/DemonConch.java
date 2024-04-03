@@ -2,7 +2,7 @@ package net.hezaerd.terraccessories.items;
 
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
-import net.hezaerd.terraccessories.common.Suitable;
+import net.hezaerd.terraccessories.utils.Suitable;
 import net.hezaerd.terraccessories.registry.SoundInit;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -21,7 +21,7 @@ import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import java.util.List;
-import net.hezaerd.terraccessories.common.Teleport;
+import net.hezaerd.terraccessories.utils.Teleport;
 
 public class DemonConch extends Item {
     /* Properties */
