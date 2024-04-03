@@ -3,6 +3,7 @@ package net.hezaerd.terraccessories.statuseffect;
 import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.utils.LibMod;
 import net.hezaerd.terraccessories.statuseffect.effects.AccessoriesRegenerationEffect;
+import net.hezaerd.terraccessories.utils.Log;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -24,15 +25,15 @@ public class ModStatusEffect {
                     Identifier id = LibMod.id(field.getName().toLowerCase());
                     Registry.register(Registries.STATUS_EFFECT, id, (TerraStatusEffect) field.get(null)).onRegister();
 
-                    Terraccessories.LOGGER.debug("Registered status effect: " + id);
+                    Log.d("Registered status effect: " + id);
                     registered++;
                 }
             }
 
-            Terraccessories.LOGGER.info("Registered " + registered + " status effects.");
+            Log.i("Registered " + registered + " status effects.");
         }
         catch (IllegalAccessException e) {
-            Terraccessories.LOGGER.error("Failed to register status effects: " + e.getMessage());
+            Log.e("Failed to register status effects: " + e.getMessage());
         }
     }
 }

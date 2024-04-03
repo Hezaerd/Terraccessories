@@ -36,6 +36,6 @@ public final class Wisdom {
     );
 
     public static void spread() {
-        Terraccessories.LOGGER.info(Util.getRandom(ALL_THE_WISDOM, CRYSTAL_BALL));
+        Log.i(Util.getRandom(ALL_THE_WISDOM, CRYSTAL_BALL));
     }
 }

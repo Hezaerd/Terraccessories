@@ -17,7 +17,6 @@ import net.fabricmc.api.ModInitializer;
 import net.hezaerd.terraccessories.items.ModItems;
 
 public class Terraccessories implements ModInitializer {
-    public static final Logger LOGGER = LoggerFactory.getLogger(LibMod.MOD_ID);
 	public static final net.hezaerd.terraccessories.config.TerraccessoriesConfig CONFIG =
 			net.hezaerd.terraccessories.config.TerraccessoriesConfig.createAndLoad();
 

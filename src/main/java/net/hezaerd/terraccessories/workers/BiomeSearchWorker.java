@@ -4,6 +4,7 @@ import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.utils.BiomesUtils;
 import net.hezaerd.terraccessories.items.MagicConch;
 import net.hezaerd.terraccessories.items.ModItems;
+import net.hezaerd.terraccessories.utils.Log;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -56,7 +57,7 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
     public void start() {
         if (!stack.isEmpty() && stack.getItem() == ModItems.MAGIC_CONCH) {
             if (maxRadius > 0 && sampleSpace > 0) {
-                Terraccessories.LOGGER.info("Starting search: " + sampleSpace + " sample space, " + maxSamples + " max samples, " + maxRadius + " max radius");
+                Log.i("Starting search: " + sampleSpace + " sample space, " + maxSamples + " max samples, " + maxRadius + " max radius");
                 WorkerManager.addWorker(this);
             } else {
                 fail();
@@ -121,27 +122,27 @@ public class BiomeSearchWorker implements WorkerManager.IWorker {
     }
 
     private void succeed() {
-        Terraccessories.LOGGER.info("Search succeeded: " + getRadius() + " radius, " + samples + " samples");
+        Log.i("Search succeeded: " + getRadius() + " radius, " + samples + " samples");
         if (!stack.isEmpty() && stack.getItem() == ModItems.MAGIC_CONCH) {
             ((MagicConch) stack.getItem()).succeed(world, stack, player, x, z, samples);
         } else {
-            Terraccessories.LOGGER.error("Invalid compass after search");
+            Log.e("Invalid compass after search");
         }
         finished = true;
     }
 
     private void fail() {
-        Terraccessories.LOGGER.info("Search failed: " + getRadius() + " radius, " + samples + " samples");
+        Log.i("Search failed: " + getRadius() + " radius, " + samples + " samples");
         if (!stack.isEmpty() && stack.getItem() == ModItems.MAGIC_CONCH) {
             ((MagicConch) stack.getItem()).fail();
         } else {
-            Terraccessories.LOGGER.error("Invalid compass after search");
+            Log.e("Invalid compass after search");
         }
         finished = true;
     }
 
     public void stop() {
-        Terraccessories.LOGGER.info("Search stopped: " + getRadius() + " radius, " + samples + " samples");
+        Log.i("Search stopped: " + getRadius() + " radius, " + samples + " samples");
         finished = true;
     }
 
