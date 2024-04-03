@@ -3,7 +3,7 @@ package net.hezaerd.terraccessories;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
-import net.hezaerd.terraccessories.registry.BlockInit;
+import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.registry.RecipesInit;
 import net.hezaerd.terraccessories.registry.ScreenHandlerInit;
 import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
@@ -29,7 +29,7 @@ public class Terraccessories implements ModInitializer {
 		RecipesInit.register();
 
 		FieldRegistrationHandler.register(ModItems.class, MOD_ID, false);
-		FieldRegistrationHandler.register(BlockInit.class, MOD_ID, true);
+		FieldRegistrationHandler.register(ModBlock.class, MOD_ID, true);
 
 		ModStatusEffect.init();
 

@@ -2,7 +2,6 @@ package net.hezaerd.terraccessories.block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.hezaerd.terraccessories.block.entity.TinkererWorkshopEntity;
-import net.hezaerd.terraccessories.registry.BlockInit;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -47,6 +46,6 @@ public class TinkererWorkshop extends BlockWithEntity {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : checkType(type, BlockInit.Entities.TINKERER_WORKSHOP, (world1, pos, state1, blockEntity) -> blockEntity.tick(world));
+        return world.isClient ? null : checkType(type, ModBlock.Entities.TINKERER_WORKSHOP, (world1, pos, state1, blockEntity) -> blockEntity.tick(world));
     }
 }

@@ -2,7 +2,7 @@ package net.hezaerd.terraccessories.block.entity;
 
 import io.wispforest.owo.util.ImplementedInventory;
 import net.hezaerd.terraccessories.recipe.TinkererWorkshopRecipe;
-import net.hezaerd.terraccessories.registry.BlockInit;
+import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.screen.TinkererScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -31,7 +31,7 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
     private static final int OUTPUT_SLOT = 1;
 
     public TinkererWorkshopEntity(BlockPos pos, BlockState state) {
-        super(BlockInit.Entities.TINKERER_WORKSHOP, pos, state);
+        super(ModBlock.Entities.TINKERER_WORKSHOP, pos, state);
     }
 
     @Override

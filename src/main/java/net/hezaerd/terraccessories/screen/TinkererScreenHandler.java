@@ -1,6 +1,6 @@
 package net.hezaerd.terraccessories.screen;
 
-import net.hezaerd.terraccessories.registry.BlockInit;
+import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.registry.ScreenHandlerInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -72,6 +72,6 @@ public class TinkererScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return canUse(context, player, BlockInit.TINKERER_WORKSHOP);
+        return canUse(context, player, ModBlock.TINKERER_WORKSHOP);
     }
 }
