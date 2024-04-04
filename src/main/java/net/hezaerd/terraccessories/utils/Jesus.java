@@ -30,7 +30,7 @@ public class Jesus {
             {
                 client.player.setSprinting(true);
             }
-            if (!player.isOnGround() && client.player.input.jumping){
+            if (!player.isOnGround() && client.player.input.jumping && !player.isSubmergedInWater()){
                 player.jump();
             }
         } else {
