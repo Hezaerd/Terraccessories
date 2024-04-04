@@ -13,6 +13,5 @@ public class ModScreenHandler {
 
     public static void init() {
         Registry.register(Registries.SCREEN_HANDLER, LibMod.id("tinkerer_workshop"), TINKERER_WORKSHOP_SCREEN_HANDLER_TYPE);
-        HandledScreens.register(TINKERER_WORKSHOP_SCREEN_HANDLER_TYPE, TinkererWorkshopScreen::new);
     }
 }
