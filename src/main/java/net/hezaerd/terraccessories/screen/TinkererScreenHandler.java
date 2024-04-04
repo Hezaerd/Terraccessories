@@ -1,6 +1,7 @@
 package net.hezaerd.terraccessories.screen;
 
 import net.hezaerd.terraccessories.block.ModBlock;
+import net.hezaerd.terraccessories.screen.slot.ResultSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -25,9 +26,7 @@ public class TinkererScreenHandler extends ScreenHandler {
 
         this.addSlot(new Slot(entityInventory, 0, 51, 21));
         this.addSlot(new Slot(entityInventory, 1, 109, 21));
-        this.addSlot(new Slot(entityInventory, 2, 80, 41));
-
-        this.slots.get(2).markDirty();
+        this.addSlot(new ResultSlot(entityInventory, 2, 80, 41));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
