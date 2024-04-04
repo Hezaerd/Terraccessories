@@ -32,7 +32,7 @@ public final class Wisdom {
             "Gentlemen, you can't fight in here! This is the War Room!",
             "I'm not a psychopath, I'm a high-functioning sociopath. Do your research.",
             "Luke, I am your father.",
-            "ZA WORLD TOKI WO TOMARE"
+            "ZA WARUDO TOKI WO TOMARE"
     );
 
     public static void spread() {
