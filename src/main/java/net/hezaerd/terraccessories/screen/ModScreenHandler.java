@@ -1,6 +1,5 @@
 package net.hezaerd.terraccessories.screen;
 
-import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.utils.LibMod;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.registry.Registries;
