@@ -15,8 +15,10 @@ public class TerraccessoriesConfigModel {
     @Nest
     public final NestedMirror mirror = new NestedMirror();
 
+    @Nest
+    public final NestedRodOfDiscord rod_of_discord = new NestedRodOfDiscord();
 
-    /* Mirrors */
+
     public static class NestedMirror {
         @Sync(Option.SyncMode.OVERRIDE_CLIENT)
         public boolean mirror_interdimensional = true;
@@ -41,6 +43,18 @@ public class TerraccessoriesConfigModel {
         @RangeConstraint(min = 0, max = 20)
         public int mirror_slowness_duration = 3;
     }
+
+    public static class NestedRodOfDiscord {
+        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
+        @RangeConstraint(min = 0, max = 32)
+        public int range = 8;
+        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
+        public boolean isUnbreakable = false;
+        public boolean teleportParticle = true;
+        public boolean teleportSound = true;
+    }
+
+
 
     /* Trinkets */
     @SectionHeader("trinkets")
