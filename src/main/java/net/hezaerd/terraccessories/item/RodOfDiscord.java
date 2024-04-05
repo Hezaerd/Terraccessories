@@ -2,12 +2,15 @@ package net.hezaerd.terraccessories.item;
 
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
+import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
 import net.hezaerd.terraccessories.utils.Log;
 import net.hezaerd.terraccessories.utils.Raycast;
 import net.hezaerd.terraccessories.utils.Suitable;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -74,8 +77,6 @@ public class RodOfDiscord extends Item {
 
         PlayerEntity player = (PlayerEntity) user;
         player.sendMessage(Text.of("Range: " + range), true);
-
-//        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
     }
 
     @Override
@@ -128,6 +129,8 @@ public class RodOfDiscord extends Item {
 
                         player.teleport(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 
+                        chaosEffect(player);
+
                         if (!pos.isWithinDistance(playerPos, 7) && Terraccessories.CONFIG.rod_of_discord.teleportSound()) {
                             playSound(world, user);
                         }
@@ -159,6 +162,17 @@ public class RodOfDiscord extends Item {
                     0.0D,
                     random.nextGaussian()
             );
+        }
+    }
+
+    private void chaosEffect(LivingEntity entity) {
+        if (entity instanceof PlayerEntity player) {
+            if (player.hasStatusEffect(ModStatusEffect.CHAOS)) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 0, false, true, false));
+                player.removeStatusEffect(ModStatusEffect.CHAOS);
+            }
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffect.CHAOS, 100, 0, false, true, true));
+
         }
     }
 }

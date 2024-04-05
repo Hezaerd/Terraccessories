@@ -1,6 +1,7 @@
 package net.hezaerd.terraccessories.statuseffect;
 
 import net.hezaerd.terraccessories.Terraccessories;
+import net.hezaerd.terraccessories.statuseffect.effects.ChaosEffect;
 import net.hezaerd.terraccessories.utils.LibMod;
 import net.hezaerd.terraccessories.statuseffect.effects.AccessoriesRegenerationEffect;
 import net.hezaerd.terraccessories.utils.Log;
@@ -15,6 +16,8 @@ public class ModStatusEffect {
 
     // Non-instantaneous status effects
     public static TerraStatusEffect ACCESSORIES_REGENERATION = new AccessoriesRegenerationEffect(StatusEffectCategory.BENEFICIAL, 0xc7106e, false);
+    public static ChaosEffect CHAOS = new ChaosEffect(StatusEffectCategory.HARMFUL, 0x8b0000, false);
+
 
     public static void init() {
         try {
