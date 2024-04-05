@@ -6,6 +6,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class BootsUtils {
+    private static final double MAX_DISTANCE_SURFACE = 0.25;
+
     public static void walkOnWater(PlayerEntity player) {
         if (player.isSneaking()) {
             return;
@@ -15,11 +17,16 @@ public class BootsUtils {
             BlockState blockStateFoot = player.getWorld().getBlockState(player.getBlockPos());
             BlockState blockStateHead = player.getWorld().getBlockState(player.getBlockPos().up());
 
+            //Get the distance to the surface of the water
+            double distanceToSurface = (Math.floor(player.getY()) + 0.85) - player.getY();
+
+            if (distanceToSurface > MAX_DISTANCE_SURFACE) {
+                player.setNoGravity(false);
+                return;
+            }
+
             if (blockStateFoot.getBlock() == Blocks.WATER && blockStateHead.getBlock() == Blocks.AIR) {
                 player.setNoGravity(true);
-
-                //Get the distance to the surface of the water
-                double distanceToSurface = (Math.floor(player.getY()) + 0.85) - player.getY();
 
                 //Clamp the distance to the surface to a maximum of 0.04
                 distanceToSurface = Math.min(0.04, distanceToSurface);
@@ -32,10 +39,8 @@ public class BootsUtils {
             //Avoid crash on loading screen
             if (client != null && client.player != null  && client.player.input != null)
             {
-                if (!player.isSprinting())
-                {
-                    client.player.setSprinting(true);
-                }
+                client.player.setSprinting(!player.isSprinting() && client.player.input.pressingForward);
+
                 if (!player.isOnGround() && client.player.input.jumping && !player.isSubmergedInWater()){
                     player.jump();
                 }
