@@ -9,7 +9,9 @@ public class BootsUtils {
     private static final double MAX_DISTANCE_SURFACE = 0.5;
 
     public static void walkOnWater(PlayerEntity player) {
-        if (player.isSneaking()) {
+        if (player == null) return;
+        if (player.isSneaking() || player.isOnGround() || player.isSubmergedInWater()) {
+            player.setNoGravity(false);
             return;
         }
 
@@ -41,7 +43,7 @@ public class BootsUtils {
             {
                 client.player.setSprinting(!player.isSprinting() && client.player.input.pressingForward);
 
-                if (!player.isOnGround() && client.player.input.jumping && !player.isSubmergedInWater()){
+                if (client.player.input.jumping){
                     player.jump();
                 }
             }
