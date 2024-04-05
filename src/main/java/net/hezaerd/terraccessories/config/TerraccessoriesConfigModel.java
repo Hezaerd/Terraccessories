@@ -47,9 +47,6 @@ public class TerraccessoriesConfigModel {
     public static class NestedRodOfDiscord {
         @Sync(Option.SyncMode.OVERRIDE_CLIENT)
         @RangeConstraint(min = 0, max = 32)
-        public int range = 8;
-        @Sync(Option.SyncMode.OVERRIDE_CLIENT)
-        @RangeConstraint(min = 0, max = 32)
         public int minRange = 8;
         @Sync(Option.SyncMode.OVERRIDE_CLIENT)
         @RangeConstraint(min = 0, max = 32)
@@ -59,7 +56,7 @@ public class TerraccessoriesConfigModel {
         public int useTime = 10;
         @Sync(Option.SyncMode.OVERRIDE_CLIENT)
         public boolean isUnbreakable = false;
-        public boolean teleportParticle = true;
+        public boolean teleportParticles = true;
         public boolean teleportSound = true;
     }
 
