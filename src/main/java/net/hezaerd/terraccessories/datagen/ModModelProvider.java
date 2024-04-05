@@ -39,5 +39,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItem.AKLET_OF_THE_WIND, Models.GENERATED);
         itemModelGenerator.register(ModItem.HERMES_BOOTS, Models.GENERATED);
         itemModelGenerator.register(ModItem.LUCKY_HORSESHOE, Models.GENERATED);
+        itemModelGenerator.register(ModItem.WATER_WALKING_BOOTS, Models.GENERATED);
     }
 }
