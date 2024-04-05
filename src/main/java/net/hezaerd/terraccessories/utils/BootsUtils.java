@@ -3,14 +3,9 @@ package net.hezaerd.terraccessories.utils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.input.KeyboardInput;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtElement;
-import org.lwjgl.glfw.GLFW;
 
-public class Jesus {
+public class BootsUtils {
 
 
     public static void walkOnWater(PlayerEntity player) {
