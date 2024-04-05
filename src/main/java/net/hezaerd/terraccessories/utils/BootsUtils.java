@@ -6,7 +6,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class BootsUtils {
-    private static final double MAX_DISTANCE_SURFACE = 0.25;
+    private static final double MAX_DISTANCE_SURFACE = 0.5;
 
     public static void walkOnWater(PlayerEntity player) {
         if (player.isSneaking()) {
