@@ -23,4 +23,11 @@ public class WaterWalkingBoots extends TrinketItem {
 
         super.tick(stack, slot, entity);
     }
+
+    @Override
+    public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        super.onUnequip(stack, slot, entity);
+
+        entity.setNoGravity(false);
+    }
 }
