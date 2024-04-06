@@ -55,8 +55,8 @@ public class StaffOfRegrowth extends Item {
         if (user.isSneaking()) {
 
             if(user.getStackInHand(hand).getDamage() < 10) {
-                world.playSound(null, user.getBlockPos(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                user.sendMessage(Text.translatable("item.terraccessories.staff_of_regrowth.fail_damage").formatted(Formatting.RED), true);
+                world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_BAT_TAKEOFF, SoundCategory.BLOCKS, 0.8F, 1.0F);
+                user.sendMessage(Text.translatable("item.terraccessories.staff_of_regrowth.fail_damage").formatted(Formatting.GOLD), true);
                 user.getItemCooldownManager().set(this, 20);
                 return TypedActionResult.fail(user.getStackInHand(hand));
             }
