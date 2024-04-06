@@ -5,6 +5,7 @@ import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.fluid.ModFluid;
+import net.hezaerd.terraccessories.enchantment.ModEnchantment;
 import net.hezaerd.terraccessories.recipe.ModRecipe;
 import net.hezaerd.terraccessories.screen.ModScreenHandler;
 import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
@@ -31,6 +32,7 @@ public class Terraccessories implements ModInitializer {
 		FieldRegistrationHandler.register(ModBlock.class, LibMod.MOD_ID, true);
 		ModFluid.init();
 		ModStatusEffect.init();
+		ModEnchantment.init();
 
 		TERRACCESSORIES_GROUP.initialize();
 

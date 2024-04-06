@@ -2,12 +2,14 @@ package net.hezaerd.terraccessories.item;
 
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
+import net.hezaerd.terraccessories.enchantment.ModEnchantment;
 import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
 import net.hezaerd.terraccessories.utils.Log;
 import net.hezaerd.terraccessories.utils.Raycast;
 import net.hezaerd.terraccessories.utils.Suitable;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -129,7 +131,9 @@ public class RodOfDiscord extends Item {
 
                         player.teleport(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
 
-                        chaosEffect(player);
+                        if(!EnchantmentHelper.get(stack).containsKey(ModEnchantment.HARMONY)) {
+                            chaosEffect(player);
+                        }
 
                         if (!pos.isWithinDistance(playerPos, 7) && Terraccessories.CONFIG.rod_of_discord.teleportSound()) {
                             playSound(world, user);
@@ -171,7 +175,7 @@ public class RodOfDiscord extends Item {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 0, false, true, false));
                 player.removeStatusEffect(ModStatusEffect.CHAOS);
             }
-            player.addStatusEffect(new StatusEffectInstance(ModStatusEffect.CHAOS, 100, 0, false, true, true));
+            player.addStatusEffect(new StatusEffectInstance(ModStatusEffect.CHAOS, 60, 0, false, true, true));
 
         }
     }
