@@ -33,7 +33,7 @@ public class RocketBoots extends TrinketItem {
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         MinecraftClient client = MinecraftClient.getInstance();
 
-        if (client == null || client.player == null)
+        if (client == null || client.player == null  || client.player.input == null)
             return;
 
         NbtCompound nbt = stack.getOrCreateNbt();
@@ -46,21 +46,21 @@ public class RocketBoots extends TrinketItem {
             case GROUND -> {
                 currentTicks = 0;
 
-                if (isJumping() || !client.player.isOnGround())
+                if (isJumping(client) || !client.player.isOnGround())
                     nbt.putInt("jump_state", JumpState.AIR.ordinal());
             }
             case AIR -> {
-                if (!isJumping())
+                if (!isJumping(client))
                     nbt.putInt("jump_state", JumpState.PRE_CAHRGING.ordinal());
             }
             case PRE_CAHRGING -> {
-                if (isJumping())
+                if (isJumping(client))
                     nbt.putInt("jump_state", JumpState.CHARGING.ordinal());
             }
             case CHARGING -> {
                 currentTicks++;
 
-                if (!isJumping())
+                if (!isJumping(client))
                 {
                     nbt.putInt("jump_state", JumpState.EMPTY.ordinal());
                     return;
@@ -80,8 +80,8 @@ public class RocketBoots extends TrinketItem {
         }
     }
 
-    private boolean isJumping() {
-        MinecraftClient client = MinecraftClient.getInstance();
-        return client != null && client.player != null && client.player.input != null && client.player.input.jumping;
+    private boolean isJumping(MinecraftClient client){
+
+        return  client.player.input.jumping;
     }
 }
