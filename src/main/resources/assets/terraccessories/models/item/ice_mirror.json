@@ -1,0 +1,19 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:item/handheld",
+	"textures": {
+		"layer0": "terraccessories:item/ice_mirror"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 90, -20],
+			"translation": [0, 4.5, 2.75],
+			"scale": [0.68, 0.68, 0.68]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, -90, 20],
+			"translation": [0, 4.5, 2.75],
+			"scale": [0.68, 0.68, 0.68]
+		}
+	}
+}

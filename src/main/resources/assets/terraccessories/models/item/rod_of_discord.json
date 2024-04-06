@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:item/handheld",
+	"textures": {
+		"layer0": "terraccessories:item/rod_of_discord"
+	},
+	"overrides": [
+		{"predicate": {"harmony": 1}, "model": "terraccessories:item/rod_of_harmony"}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 90, -15],
+			"translation": [0, 4.5, 2.75],
+			"scale": [0.68, 0.68, 0.68]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, -90, 15],
+			"translation": [0, 4.5, 2.75],
+			"scale": [0.68, 0.68, 0.68]
+		}
+	}
+}

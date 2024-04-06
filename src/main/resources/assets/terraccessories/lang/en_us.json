@@ -56,10 +56,13 @@
   "item.terraccessories.demon_conch.fail": "The demon conch remains silent",
   "item.terraccessories.demon_conch.non_suitable": "Maybe you should try this in a more suitable location",
 
-    "item.terraccessories.magic_conch": "Magic Conch",
-    "item.terraccessories.magic_conch.tooltip": "If you listen closely, you can hear the ocean",
-    "item.terraccessories.magic_conch.success": "The air sings with the sound of the ocean",
-    "item.terraccessories.magic_conch.fail": "The magic conch remains silent",
+  "item.terraccessories.magic_conch": "Magic Conch",
+  "item.terraccessories.magic_conch.tooltip": "If you listen closely, you can hear the ocean",
+  "item.terraccessories.magic_conch.success": "The air sings with the sound of the ocean",
+  "item.terraccessories.magic_conch.fail": "The magic conch remains silent",
+
+  "item.terraccessories.staff_of_regrowth": "Staff of Regrowth",
+  "item.terraccessories.staff_of_regrowth.tooltip": "Creates grass on dirt",
 
   "item.terraccessories.bottomless_water_bucket": "Bottomless Water Bucket",
   "item.terraccessories.bottomless_lava_bucket": "Bottomless Lava Bucket",
