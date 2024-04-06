@@ -1,7 +1,6 @@
 package net.hezaerd.terraccessories.enchantment.enchants;
 
 import net.hezaerd.terraccessories.enchantment.TerraEnchantment;
-import net.hezaerd.terraccessories.item.ModItem;
 import net.hezaerd.terraccessories.item.RodOfDiscord;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;

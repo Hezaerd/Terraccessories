@@ -21,13 +21,11 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
         /* Tools */
-        itemModelGenerator.register(ModItem.MAGIC_MIRROR, Models.GENERATED);
-        itemModelGenerator.register(ModItem.ICE_MIRROR, Models.GENERATED);
         itemModelGenerator.register(ModItem.DEMON_CONCH, Models.GENERATED);
         itemModelGenerator.register(ModItem.MAGIC_CONCH, Models.GENERATED);
         itemModelGenerator.register(ModItem.BOTTOMLESS_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItem.BOTTOMLESS_LAVA_BUCKET, Models.GENERATED);
-        itemModelGenerator.register(ModItem.ROD_OF_DISCORD, Models.GENERATED);
+        itemModelGenerator.register(ModItem.STAFF_OF_REGROWTH, Models.HANDHELD);
 
         /* Potions */
         itemModelGenerator.register(ModItem.RANDOM_TELEPORTATION_POTION, Models.GENERATED);

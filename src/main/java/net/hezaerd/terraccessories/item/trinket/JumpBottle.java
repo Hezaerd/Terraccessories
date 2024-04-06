@@ -60,7 +60,7 @@ public class JumpBottle extends TrinketItem {
 
             for (int i = 0; i < 50; i++)
             {
-                client.world.addParticle(jumpParticle, entity.getX(), entity.getY(), entity.getZ(), Math.cos(i) * particlesSpeed, 0.0D, Math.sin(i) * particlesSpeed);
+                entity.getWorld().addParticle(jumpParticle, entity.getX(), entity.getY(), entity.getZ(), Math.cos(i) * particlesSpeed, 0.0D, Math.sin(i) * particlesSpeed);
             }
         }
     }
