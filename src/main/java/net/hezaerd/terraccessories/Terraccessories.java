@@ -3,9 +3,11 @@ package net.hezaerd.terraccessories;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.fluid.ModFluid;
 import net.hezaerd.terraccessories.enchantment.ModEnchantment;
+import net.hezaerd.terraccessories.loottable.ModLootTableModifier;
 import net.hezaerd.terraccessories.recipe.ModRecipe;
 import net.hezaerd.terraccessories.screen.ModScreenHandler;
 import net.hezaerd.terraccessories.statuseffect.ModStatusEffect;
@@ -26,6 +28,8 @@ public class Terraccessories implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModLootTableModifier.ModifyLootTables();
+
 		ModScreenHandler.init();
 		ModRecipe.register();
 		FieldRegistrationHandler.register(ModItem.class, LibMod.MOD_ID, false);
