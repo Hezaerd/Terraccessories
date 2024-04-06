@@ -27,7 +27,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItem.MAGIC_CONCH, Models.GENERATED);
         itemModelGenerator.register(ModItem.BOTTOMLESS_WATER_BUCKET, Models.GENERATED);
         itemModelGenerator.register(ModItem.BOTTOMLESS_LAVA_BUCKET, Models.GENERATED);
-        itemModelGenerator.register(ModItem.ROD_OF_DISCORD, Models.GENERATED);
 
         /* Potions */
         itemModelGenerator.register(ModItem.RANDOM_TELEPORTATION_POTION, Models.GENERATED);
