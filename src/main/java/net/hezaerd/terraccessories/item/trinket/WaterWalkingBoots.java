@@ -15,7 +15,7 @@ public class WaterWalkingBoots extends TrinketItem {
     public WaterWalkingBoots() {
         super(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(1));
         //Avoid crash on loading screen Ratio GEEK_Raphazel
-        Log.e("Ratio GEEK_Raphazel, i was right.... 0_0)b");
+
     }
 
 
