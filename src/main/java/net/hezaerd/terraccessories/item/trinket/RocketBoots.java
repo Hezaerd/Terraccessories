@@ -68,8 +68,8 @@ public class RocketBoots extends TrinketItem {
 
                 entity.addVelocity(0, force, 0);
 
-                client.world.addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
-                client.world.addParticle(ParticleTypes.FLAME, entity.getX(), entity.getY(), entity.getZ(), Random.create().nextBetween(-1, 1) * 0.1, 0, Random.create().nextBetween(-1, 1) * 0.1);
+                entity.getWorld().addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
+                entity.getWorld().addParticle(ParticleTypes.FLAME, entity.getX(), entity.getY(), entity.getZ(), Random.create().nextBetween(-1, 1) * 0.1, 0, Random.create().nextBetween(-1, 1) * 0.1);
 
                 if (currentTicks >= maxTicks)
                     nbt.putInt("jump_state", JumpState.EMPTY.ordinal());
