@@ -31,5 +31,6 @@ public class ModItem implements ItemRegistryContainer {
     public static final Item LUCKY_HORSESHOE = new LuckyHorseshoe();
 
     public static final Item WATER_WALKING_BOOTS = new WaterWalkingBoots();
+    public static final Item ROCKET_BOOTS = new RocketBoots();
 //    public static final Item BAND_OF_REGENERATION = new BandOfRegeneration(); // STAND-BY
 }
