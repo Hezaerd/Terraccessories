@@ -37,6 +37,12 @@ public class StaffOfRegrowth extends Item {
         tooltip.add(Text.translatable("item.terraccessories.staff_of_regrowth.tooltip").formatted(Formatting.DARK_GREEN));
     }
 
+    /* Enchantability */
+    @Override
+    public int getEnchantability() {
+        return 1;
+    }
+
     /* Stop mining */
     @Override
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
