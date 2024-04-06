@@ -21,8 +21,6 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
         /* Tools */
-        itemModelGenerator.register(ModItem.MAGIC_MIRROR, Models.GENERATED);
-        itemModelGenerator.register(ModItem.ICE_MIRROR, Models.GENERATED);
         itemModelGenerator.register(ModItem.DEMON_CONCH, Models.GENERATED);
         itemModelGenerator.register(ModItem.MAGIC_CONCH, Models.GENERATED);
         itemModelGenerator.register(ModItem.BOTTOMLESS_WATER_BUCKET, Models.GENERATED);
