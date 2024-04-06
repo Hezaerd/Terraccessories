@@ -51,7 +51,13 @@ public class StaffOfRegrowth extends Item {
 
             // Set the block to grass
             context.getWorld().setBlockState(context.getBlockPos(), Blocks.GRASS_BLOCK.getDefaultState());
-            
+
+            // Damage the item
+            context.getStack().damage(1, player, (p) -> {
+                Log.i("Staff of Regrowth damaged!");
+                p.sendToolBreakStatus(context.getHand());
+            });
+
             // Play the sound
             context.getWorld().playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
