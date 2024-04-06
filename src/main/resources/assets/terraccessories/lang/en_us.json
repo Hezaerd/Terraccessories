@@ -85,5 +85,7 @@
   "block.terraccessories.tinkerer_workshop": "Tinkerer Workshop",
 
   "effect.terraccessories.accessories_regeneration": "Regeneration",
-  "effect.terraccessories.chaos": "Chaos state"
+  "effect.terraccessories.chaos": "Chaos state",
+
+  "enchantment.terraccessories.harmony": "Harmony"
 }
