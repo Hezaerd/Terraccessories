@@ -9,6 +9,8 @@ import net.minecraft.registry.tag.FluidTags;
 public class BootsUtils {
     private static final double MAX_DISTANCE_SURFACE = 0.1;
 
+    //nbt tag to check if previous block was solid then switch to not fall on lava when moving from ground to above lava
+
     public static void walkOnFluid(PlayerEntity player, Blocks fluid)
     {}
 
@@ -23,7 +25,9 @@ public class BootsUtils {
         BlockState blockStateDown = player.getWorld().getBlockState(player.getBlockPos().down());
         BlockState blockStateFoot = player.getWorld().getBlockState(player.getBlockPos());
 
-        //Get the distance to the surface of the water
+        boolean steppingOnLava = blockStateDown.getBlock() == Blocks.LAVA && blockStateFoot.getBlock() == Blocks.AIR;
+        Log.i("steppingOnLava: " + steppingOnLava);
+        //Get the distance to the surface of the lava
         double distanceToSurface = (Math.floor(player.getY())) - player.getY();
 
 //        if (distanceToSurface > MAX_DISTANCE_SURFACE) {
@@ -31,11 +35,12 @@ public class BootsUtils {
 //            return;
 //        }
 
-        if (blockStateDown.getBlock() == Blocks.LAVA && blockStateFoot.getBlock() != Blocks.LAVA) {
-            player.setNoGravity(true);
+        if (steppingOnLava) {
+            player.setOnGround(true);
 
             //Clamp the distance to the surface to a maximum of 0.04
             distanceToSurface = Math.min(0.04, distanceToSurface);
+
 
             //Set the player's velocity to the distance to the surface if it is greater than the player's current velocity
             player.setVelocity(player.getVelocity().x, Math.max(distanceToSurface, player.getVelocity().y), player.getVelocity().z);
@@ -50,7 +55,7 @@ public class BootsUtils {
             }
         }
         else {
-            player.setNoGravity(false);
+            player.setOnGround(false);
         }
 
     }
