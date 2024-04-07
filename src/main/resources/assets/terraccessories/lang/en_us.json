@@ -89,6 +89,11 @@
 
   "item.terraccessories.random_teleportation_potion": "Random Teleportation Potion",
 
+  "item.terraccessories.soul_of_fright": "Soul of Fright",
+  "item.terraccessories.soul_of_might": "Soul of Might",
+  "item.terraccessories.soul_of_sight": "Soul of Sight",
+  "item.terraccessories.soul_of_elements": "Soul of Elements",
+
   "block.terraccessories.tinkerer_workshop": "Tinkerer Workshop",
 
   "effect.terraccessories.accessories_regeneration": "Regeneration",

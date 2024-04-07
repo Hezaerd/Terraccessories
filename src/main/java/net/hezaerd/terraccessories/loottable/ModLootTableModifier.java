@@ -15,6 +15,15 @@ public class ModLootTableModifier {
     public static final Identifier JUNGLE_TEMPLE_ID =
         new Identifier("minecraft", "chests/jungle_temple");
 
+    public static final Identifier WITHER_ID =
+        new Identifier("minecraft", "entities/wither");
+
+    public static final Identifier WARDEN_ID =
+        new Identifier("minecraft", "entities/warden");
+
+    public static final Identifier ENDER_DRAGON =
+        new Identifier("minecraft", "entities/ender_dragon");
+
     public static void ModifyLootTables() {
         LootTableEvents.MODIFY.register(((resourceManager, lootManager, id, tableBuilder, source) -> {
 
@@ -28,6 +37,35 @@ public class ModLootTableModifier {
                 tableBuilder.pool(poolBuilder);
             }
 
+            if(WITHER_ID.equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1)) // 1 item
+                        .conditionally(RandomChanceLootCondition.builder(1.0f)) // 100% chance
+                        .with(ItemEntry.builder(ModItem.SOUL_OF_FRIGHT))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+
+                tableBuilder.pool(poolBuilder);
+            }
+
+            if(WARDEN_ID.equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1)) // 1 item
+                        .conditionally(RandomChanceLootCondition.builder(1.0f)) // 100% chance
+                        .with(ItemEntry.builder(ModItem.SOUL_OF_SIGHT))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+
+                tableBuilder.pool(poolBuilder);
+            }
+
+            if(ENDER_DRAGON.equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1)) // 1 item
+                        .conditionally(RandomChanceLootCondition.builder(1.0f)) // 100% chance
+                        .with(ItemEntry.builder(ModItem.SOUL_OF_MIGHT))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 1.0f)).build());
+
+                tableBuilder.pool(poolBuilder);
+            }
 
         }));
     }

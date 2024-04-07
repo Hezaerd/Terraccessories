@@ -1,6 +1,8 @@
 package net.hezaerd.terraccessories.item;
 
+import io.wispforest.owo.itemgroup.OwoItemSettings;
 import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
+import net.hezaerd.terraccessories.Terraccessories;
 import net.hezaerd.terraccessories.item.trinket.*;
 import net.hezaerd.terraccessories.sound.ModSound;
 import net.minecraft.fluid.Fluids;
@@ -34,4 +36,10 @@ public class ModItem implements ItemRegistryContainer {
     public static final Item WATER_WALKING_BOOTS = new WaterWalkingBoots();
     public static final Item ROCKET_BOOTS = new RocketBoots();
 //    public static final Item BAND_OF_REGENERATION = new BandOfRegeneration(); // STAND-BY
+
+    /* Resources */
+    public static final Item SOUL_OF_FRIGHT = new Item(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
+    public static final Item SOUL_OF_MIGHT = new Item(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
+    public static final Item SOUL_OF_SIGHT = new Item(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
+    public static final Item SOUL_OF_ELEMENTS = new Item(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
 }
