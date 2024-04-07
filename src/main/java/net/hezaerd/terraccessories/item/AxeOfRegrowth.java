@@ -1,6 +1,5 @@
 package net.hezaerd.terraccessories.item;
 
-import com.google.common.collect.BiMap;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
 import net.minecraft.advancement.criterion.Criteria;
@@ -10,7 +9,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -20,14 +21,12 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import net.minecraft.world.event.GameEvent;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 public class AxeOfRegrowth extends AxeItem {
 
@@ -103,10 +102,51 @@ public class AxeOfRegrowth extends AxeItem {
         return ActionResult.PASS;
     }
 
-    /* Get stripped state */
-    private Optional<BlockState> getStrippedState(BlockState state) {
-        return Optional.ofNullable(STRIPPED_BLOCKS.get(state.getBlock())).map((block) ->
-                block.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)));
+    /* Post mine */
+    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
+        int damage = 1; // damage done to the axe
+
+        if(!world.isClient && state.isIn(BlockTags.LOGS)) {
+            final int durability = Math.abs(stack.getMaxDamage() - stack.getDamage());
+
+            BlockPos.Mutable mutableUp = pos.mutableCopy();
+            BlockPos.Mutable mutableDown = pos.mutableCopy();
+
+            BlockState dirtState = null;
+
+            while(world.getBlockState(mutableUp.move(Direction.UP)).isIn(BlockTags.LOGS)) {
+                world.breakBlock(mutableUp, true, miner);
+                damage++;
+            }
+
+            while(world.getBlockState(mutableDown.move(Direction.DOWN)).isIn(BlockTags.LOGS)) {
+                world.breakBlock(mutableDown, true, miner);
+                damage++;
+
+                // Check if there is dirt below the log
+                if(world.getBlockState(mutableDown.down()).isIn(BlockTags.DIRT)) {
+                    dirtState = world.getBlockState(mutableDown);
+                }
+            }
+
+            if(dirtState != null) {
+                placeSapling(world, mutableDown.up(), getSapling(state));
+            }
+
+            for(BlockPos blockPos : BlockPos.iterateOutwards(mutableUp.offset(Direction.UP), 8, 8, 8)) {
+                final BlockState blockState = world.getBlockState(blockPos);
+                if(blockState.isIn(BlockTags.LEAVES)) {
+                    ((LeavesBlock)blockState.getBlock()).scheduledTick(blockState, (ServerWorld)world, blockPos, world.random);
+                }
+            }
+
+            if(state.getHardness(world, pos) != 0.0F) {
+                stack.damage(damage, miner, (p) -> {
+                    p.sendToolBreakStatus(p.getActiveHand());
+                });
+            }
+        }
+        return true;
     }
 
     private void playSoundAndSendMessage(World world, PlayerEntity user, SoundEvent soundEvent, String message, Formatting formatting) {
@@ -149,5 +189,28 @@ public class AxeOfRegrowth extends AxeItem {
 
             world.addParticle(ParticleTypes.HAPPY_VILLAGER, x, y, z, 0.0D, 0.0D, 0.0D);
         }
+    }
+
+    private void placeSapling(World world, BlockPos pos, BlockState state) {
+        world.setBlockState(pos, state);
+        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+    }
+
+    private BlockState getSapling(BlockState log) {
+        Block block = log.getBlock();
+        if (block.equals(Blocks.OAK_LOG)) {
+            return Blocks.OAK_SAPLING.getDefaultState();
+        } else if (block.equals(Blocks.SPRUCE_LOG)) {
+            return Blocks.SPRUCE_SAPLING.getDefaultState();
+        } else if (block.equals(Blocks.BIRCH_LOG)) {
+            return Blocks.BIRCH_SAPLING.getDefaultState();
+        } else if (block.equals(Blocks.JUNGLE_LOG)) {
+            return Blocks.JUNGLE_SAPLING.getDefaultState();
+        } else if (block.equals(Blocks.ACACIA_LOG)) {
+            return Blocks.ACACIA_SAPLING.getDefaultState();
+        } else if (block.equals(Blocks.DARK_OAK_LOG)) {
+            return Blocks.DARK_OAK_SAPLING.getDefaultState();
+        }
+        return Blocks.OAK_SAPLING.getDefaultState();
     }
 }
