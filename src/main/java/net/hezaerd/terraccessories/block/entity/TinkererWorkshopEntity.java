@@ -101,6 +101,8 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
         this.removeStack(INPUT_SLOT, 1);
         this.removeStack(INPUT_SLOT_2, 1);
         this.setStack(OUTPUT_SLOT, itemStackResult);
+
+        markDirty();
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {

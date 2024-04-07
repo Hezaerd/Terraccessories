@@ -16,6 +16,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class TinkererWorkshop extends BlockWithEntity {
@@ -50,5 +51,20 @@ public class TinkererWorkshop extends BlockWithEntity {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return world.isClient ? null : checkType(type, ModBlock.Entities.TINKERER_WORKSHOP, (world1, pos, state1, blockEntity) -> blockEntity.tick(world));
+    }
+
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
+
+        if (state.hasBlockEntity()) {
+            // drops everything in the inventory
+            world.getBlockEntity(pos).get(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
+                for (int i = 0; i < h.getSlots(); i++) {
+                    spawnAsEntity(worldIn, pos, h.getStackInSlot(i));
+                }
+            });
+            worldIn.removeTileEntity(pos);
+        }
     }
 }
