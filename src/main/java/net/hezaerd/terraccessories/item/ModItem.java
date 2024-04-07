@@ -21,6 +21,7 @@ public class ModItem implements ItemRegistryContainer {
     public static final Item BOTTOMLESS_LAVA_BUCKET = new BottomlessBucket(Fluids.LAVA);
     public static final Item ROD_OF_DISCORD = new RodOfDiscord();
     public static final Item STAFF_OF_REGROWTH = new StaffOfRegrowth();
+    public static final Item AXE_OF_REGROWTH = new AxeOfRegrowth();
 
     /* Potion */
     public static final Item RANDOM_TELEPORTATION_POTION = new RandomTeleportationPotion();
