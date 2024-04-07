@@ -83,40 +83,6 @@ public class AxeOfRegrowth extends AxeItem {
         BlockState blockState = world.getBlockState(blockPos);
 
         boolean isDirt = blockState.isOf(Blocks.DIRT);
-        Optional<BlockState> strippedState = this.getStrippedState(blockState);
-        Optional<BlockState> oxidizedState = Oxidizable.getDecreasedOxidationState(blockState);
-        Optional<BlockState> waxedState = Optional.ofNullable((Block)((BiMap<?, ?>) HoneycombItem.WAXED_TO_UNWAXED_BLOCKS.get()).get(blockState.getBlock())).map((block) -> block.getStateWithProperties(blockState));
-        Optional<BlockState> currentState = Optional.empty();
-
-        if (strippedState.isPresent()) {
-            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            currentState = strippedState;
-        } else if (oxidizedState.isPresent()) {
-            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            world.syncWorldEvent(playerEntity, WorldEvents.BLOCK_SCRAPED, blockPos, 0);
-            currentState = oxidizedState;
-        } else if (waxedState.isPresent()) {
-            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_WAX_OFF, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            world.syncWorldEvent(playerEntity, WorldEvents.WAX_REMOVED, blockPos, 0);
-            currentState = waxedState;
-        }
-
-        if (currentState.isPresent()) {
-            if (playerEntity instanceof ServerPlayerEntity) {
-                Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
-            }
-
-            world.setBlockState(blockPos, currentState.get(), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, currentState.get()));
-
-            if (playerEntity != null) {
-                itemStack.damage(1, (LivingEntity)playerEntity, (Consumer)((p) -> {
-                    playerEntity.sendToolBreakStatus(context.getHand());
-                }));
-            }
-
-            return ActionResult.success(world.isClient);
-        }
 
         if (isDirt) {
             if (playerEntity instanceof ServerPlayerEntity) {
@@ -132,9 +98,9 @@ public class AxeOfRegrowth extends AxeItem {
             return ActionResult.success(world.isClient);
         }
 
-        else {
-            return ActionResult.PASS;
-        }
+        super.useOnBlock(context);
+
+        return ActionResult.PASS;
     }
 
     /* Get stripped state */
