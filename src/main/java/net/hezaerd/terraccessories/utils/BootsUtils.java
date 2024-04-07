@@ -29,10 +29,6 @@ public class BootsUtils {
             player.setNoGravity(false);
             return;
         }
-        ShapeContext shapeContext = ShapeContext.of(player);
-        
-
-        /*    if (shapeContext.isAbove(FluidBlock.COLLISION_SHAPE, this.getBlockPos(), true) && !this.getWorld().getFluidState(this.getBlockPos().up()).isIn(FluidTags.LAVA))*/
         BlockState blockStateDown = player.getWorld().getBlockState(player.getBlockPos().down());
         BlockState blockStateFoot = player.getWorld().getBlockState(player.getBlockPos());
         //if player is previously on ground add y velocity to avoid falling on lava

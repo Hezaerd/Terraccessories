@@ -5,12 +5,12 @@
       "item": "terraccessories:rod_of_discord"
     },
     {
-      "item": "minecraft:diamond"
+      "item": "terraccessories:soul_of_elements"
     }
   ],
   "output": {
     "item": "terraccessories:rod_of_discord"
-  },
+    },
   "ench": {
     "terraccessories:harmony": 1
   }

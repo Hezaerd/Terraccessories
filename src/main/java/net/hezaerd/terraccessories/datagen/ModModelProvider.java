@@ -39,5 +39,12 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItem.LUCKY_HORSESHOE, Models.GENERATED);
         itemModelGenerator.register(ModItem.WATER_WALKING_BOOTS, Models.GENERATED);
         itemModelGenerator.register(ModItem.ROCKET_BOOTS, Models.GENERATED);
+
+        /* Resources */
+        itemModelGenerator.register(ModItem.SOUL_OF_FRIGHT, Models.GENERATED);
+        itemModelGenerator.register(ModItem.SOUL_OF_MIGHT, Models.GENERATED);
+        itemModelGenerator.register(ModItem.SOUL_OF_SIGHT, Models.GENERATED);
+        itemModelGenerator.register(ModItem.SOUL_OF_ELEMENTS, Models.GENERATED);
+
     }
 }

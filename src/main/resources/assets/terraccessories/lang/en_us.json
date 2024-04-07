@@ -67,6 +67,13 @@
   "item.terraccessories.staff_of_regrowth.fail_damage": "The staff is not damaged enough",
   "item.terraccessories.staff_of_regrowth.fail_bonemeal": "You need bonemeal to repair the staff",
 
+  "item.terraccessories.axe_of_regrowth": "Axe of Regrowth",
+  "item.terraccessories.axe_of_regrowth.tooltip": "Creates grass on dirt",
+  "item.terraccessories.axe_of_regrowth.tooltip2": "Plants sapplings when cutting trees",
+  "item.terraccessories.axe_of_regrowth.repair.success": "Sucessfuly repaired",
+  "item.terraccessories.axe_of_regrowth.repair.durability": "The axe is not damaged enough",
+  "item.terraccessories.axe_of_regrowth.repair.bonemeal": "You need bonemeal to repair the axe",
+
 
   "item.terraccessories.bottomless_water_bucket": "Bottomless Water Bucket",
   "item.terraccessories.bottomless_lava_bucket": "Bottomless Lava Bucket",
@@ -88,6 +95,11 @@
   "item.terraccessories.band_of_regeneration.tooltip": "Slowly regenerates life",
 
   "item.terraccessories.random_teleportation_potion": "Random Teleportation Potion",
+
+  "item.terraccessories.soul_of_fright": "Soul of Fright",
+  "item.terraccessories.soul_of_might": "Soul of Might",
+  "item.terraccessories.soul_of_sight": "Soul of Sight",
+  "item.terraccessories.soul_of_elements": "Soul of Elements",
 
   "block.terraccessories.tinkerer_workshop": "Tinkerer Workshop",
 
