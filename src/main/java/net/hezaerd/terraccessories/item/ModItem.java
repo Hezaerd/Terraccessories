@@ -38,8 +38,8 @@ public class ModItem implements ItemRegistryContainer {
 //    public static final Item BAND_OF_REGENERATION = new BandOfRegeneration(); // STAND-BY
 
     /* Resources */
-    public static final Item SOUL_OF_FRIGHT = new Item(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
-    public static final Item SOUL_OF_MIGHT = new Item(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
-    public static final Item SOUL_OF_SIGHT = new Item(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
-    public static final Item SOUL_OF_ELEMENTS = new Item(new OwoItemSettings().group(Terraccessories.TERRACCESSORIES_GROUP).maxCount(16));
+    public static final Item SOUL_OF_FRIGHT = new Soul(64);
+    public static final Item SOUL_OF_MIGHT = new Soul(64);
+    public static final Item SOUL_OF_SIGHT = new Soul(64);
+    public static final Item SOUL_OF_ELEMENTS = new Soul(16);
 }
