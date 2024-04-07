@@ -52,45 +52,38 @@ public class StaffOfRegrowth extends Item {
     /* Use */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (user.isSneaking()) {
+        if (!user.isSneaking()) {
+            return TypedActionResult.pass(user.getStackInHand(hand));
+        }
 
-            if(user.getStackInHand(hand).getDamage() < 10) {
-                world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_BAT_TAKEOFF, SoundCategory.BLOCKS, 0.8F, 1.0F);
-                user.sendMessage(Text.translatable("item.terraccessories.staff_of_regrowth.fail_damage").formatted(Formatting.GOLD), true);
-                user.getItemCooldownManager().set(this, 20);
-                return TypedActionResult.fail(user.getStackInHand(hand));
-            }
-
-            if(user.getInventory().contains(new ItemStack(Items.BONE_MEAL))) {
-                int maxNeeded = user.getStackInHand(hand).getDamage() / 10;
-                int boneMealCount = user.getInventory().count(Items.BONE_MEAL);
-                int slot = user.getInventory().getSlotWithStack(new ItemStack(Items.BONE_MEAL));
-
-                if(boneMealCount >= 1 && (user.getStackInHand(hand).getDamage() > 10)) {
-
-                    int available = Math.min(maxNeeded, boneMealCount);
-
-                    // Repair the staff
-                    user.getStackInHand(hand).damage(-available * 10, user, (p) -> {});
-                    user.getInventory().removeStack(slot, available);
-
-                    world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    user.sendMessage(Text.translatable("item.terraccessories.staff_of_regrowth.success").formatted(Formatting.GREEN), true);
-
-                    return TypedActionResult.success(user.getStackInHand(hand));
-                }
-
-            }
-
-            world.playSound(null, user.getBlockPos(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            user.sendMessage(Text.translatable("item.terraccessories.staff_of_regrowth.fail_bonemeal").formatted(Formatting.RED), true);
+        if(user.getStackInHand(hand).getDamage() < 10) {
+            world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_BAT_TAKEOFF, SoundCategory.BLOCKS, 0.8F, 1.0F);
+            user.sendMessage(Text.translatable("item.terraccessories.staff_of_regrowth.fail_damage").formatted(Formatting.GOLD), true);
             user.getItemCooldownManager().set(this, 20);
-
             return TypedActionResult.fail(user.getStackInHand(hand));
         }
 
-        return TypedActionResult.pass(user.getStackInHand(hand));
+        if(!user.getInventory().contains(new ItemStack(Items.BONE_MEAL))) {
+            world.playSound(null, user.getBlockPos(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            user.sendMessage(Text.translatable("item.terraccessories.staff_of_regrowth.fail_bonemeal").formatted(Formatting.RED), true);
+            user.getItemCooldownManager().set(this, 20);
+            return TypedActionResult.fail(user.getStackInHand(hand));
+        }
+
+        int maxToRepair = user.getStackInHand(hand).getDamage() / 10;
+        int amount = user.getInventory().count(Items.BONE_MEAL);
+        int slot = user.getInventory().getSlotWithStack(new ItemStack(Items.BONE_MEAL));
+        int available = Math.min(maxToRepair, amount);
+
+        user.getStackInHand(hand).damage(-available * 10, user, (p) -> {});
+        user.getInventory().removeStack(slot, available);
+        world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        user.sendMessage(Text.translatable("item.terraccessories.staff_of_regrowth.success").formatted(Formatting.GREEN), true);
+
+        return TypedActionResult.success(user.getStackInHand(hand));
     }
+
+
 
     /* Use on block */
     @Override
@@ -107,12 +100,12 @@ public class StaffOfRegrowth extends Item {
             BlockPos pos = context.getBlockPos();
             MinecraftClient client = MinecraftClient.getInstance();
 
+
             // Set the block to grass
             context.getWorld().setBlockState(context.getBlockPos(), Blocks.GRASS_BLOCK.getDefaultState());
 
             // Damage the item
             context.getStack().damage(1, player, (p) -> {
-                Log.i("Staff of Regrowth damaged!");
                 p.sendToolBreakStatus(context.getHand());
             });
 
