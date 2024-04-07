@@ -130,7 +130,7 @@ public class AxeOfRegrowth extends AxeItem {
             }
 
             if(dirtState != null) {
-                placeSapling(world, mutableDown.up(), getSapling(state));
+                placeSapling(world, mutableDown.up(), getSapling(state), (PlayerEntity)miner);
             }
 
             for(BlockPos blockPos : BlockPos.iterateOutwards(mutableUp.offset(Direction.UP), 8, 8, 8)) {
@@ -166,6 +166,10 @@ public class AxeOfRegrowth extends AxeItem {
         return user.getInventory().contains(new ItemStack(Items.BONE_MEAL));
     }
 
+    private boolean playerHasSapling(PlayerEntity user, BlockState log) {
+        return user.getInventory().contains(getSaplingItemStack(log));
+    }
+
     private void repairItem(World world, PlayerEntity user, ItemStack item) {
         int maxToRepair = item.getDamage() / boneMealValue;
         int amount = user.getInventory().count(Items.BONE_MEAL);
@@ -191,7 +195,19 @@ public class AxeOfRegrowth extends AxeItem {
         }
     }
 
-    private void placeSapling(World world, BlockPos pos, BlockState state) {
+    private void placeSapling(World world, BlockPos pos, BlockState state, PlayerEntity miner) {
+
+        // Check if player has sapling
+        if(!playerHasSapling(miner, state)) {
+            return;
+        }
+
+        ItemStack sapling = getSaplingItemStack(state);
+
+        // Remove sapling from player inventory
+        int slot = miner.getInventory().getSlotWithStack(sapling);
+        miner.getInventory().removeStack(slot, 1);
+
         world.setBlockState(pos, state);
         world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
     }
@@ -212,5 +228,23 @@ public class AxeOfRegrowth extends AxeItem {
             return Blocks.DARK_OAK_SAPLING.getDefaultState();
         }
         return Blocks.OAK_SAPLING.getDefaultState();
+    }
+
+    private ItemStack getSaplingItemStack(BlockState sapling) {
+        Block block = sapling.getBlock();
+        if (block.equals(Blocks.OAK_SAPLING)) {
+            return new ItemStack(Items.OAK_SAPLING);
+        } else if (block.equals(Blocks.SPRUCE_SAPLING)) {
+            return new ItemStack(Items.SPRUCE_SAPLING);
+        } else if (block.equals(Blocks.BIRCH_SAPLING)) {
+            return new ItemStack(Items.BIRCH_SAPLING);
+        } else if (block.equals(Blocks.JUNGLE_SAPLING)) {
+            return new ItemStack(Items.JUNGLE_SAPLING);
+        } else if (block.equals(Blocks.ACACIA_SAPLING)) {
+            return new ItemStack(Items.ACACIA_SAPLING);
+        } else if (block.equals(Blocks.DARK_OAK_SAPLING)) {
+            return new ItemStack(Items.DARK_OAK_SAPLING);
+        }
+        return new ItemStack(Items.OAK_SAPLING);
     }
 }
