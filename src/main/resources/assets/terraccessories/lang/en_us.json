@@ -73,6 +73,8 @@
   "item.terraccessories.axe_of_regrowth.repair.success": "Sucessfuly repaired",
   "item.terraccessories.axe_of_regrowth.repair.durability": "The axe is not damaged enough",
   "item.terraccessories.axe_of_regrowth.repair.bonemeal": "You need bonemeal to repair the axe",
+  "item.terraccessories.axe_of_regrowth.sapling": "You don't have any saplings",
+
 
 
   "item.terraccessories.bottomless_water_bucket": "Bottomless Water Bucket",

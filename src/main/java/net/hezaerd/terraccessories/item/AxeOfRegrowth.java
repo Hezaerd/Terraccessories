@@ -56,7 +56,7 @@ public class AxeOfRegrowth extends AxeItem {
             return TypedActionResult.pass(itemStack);
         }
 
-        if(isDamagedEnough(itemStack)) {
+        if(!isDamagedEnough(itemStack)) {
             playSoundAndSendMessage(world, user, SoundEvents.ENTITY_BAT_TAKEOFF, "item.terraccessories.axe_of_regrowth.repair.durability", Formatting.GOLD);
             setItemCooldown(user);
             return TypedActionResult.fail(itemStack);
@@ -81,23 +81,34 @@ public class AxeOfRegrowth extends AxeItem {
         PlayerEntity playerEntity = context.getPlayer();
         BlockState blockState = world.getBlockState(blockPos);
 
+        super.useOnBlock(context);
+
         boolean isDirt = blockState.isOf(Blocks.DIRT);
+        boolean isSapling = blockState.isOf(Blocks.OAK_SAPLING) || blockState.isOf(Blocks.SPRUCE_SAPLING) || blockState.isOf(Blocks.BIRCH_SAPLING) || blockState.isOf(Blocks.JUNGLE_SAPLING) || blockState.isOf(Blocks.ACACIA_SAPLING) || blockState.isOf(Blocks.DARK_OAK_SAPLING);
 
         if (isDirt) {
             if (playerEntity instanceof ServerPlayerEntity) {
-                Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
+                Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
             }
 
             applyGrass(world, blockPos);
-
-            itemStack.damage(1, playerEntity, (p) -> {
-                playerEntity.sendToolBreakStatus(context.getHand());
-            });
-
-            return ActionResult.success(world.isClient);
         }
 
-        super.useOnBlock(context);
+        if (isSapling) {
+            if (playerEntity instanceof ServerPlayerEntity) {
+                Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
+            }
+
+            // apply bone meal to sapling
+            if (playerEntity.getServer() != null) {
+                ServerWorld serverWorld = playerEntity.getServer().getWorld(world.getRegistryKey());
+                ((SaplingBlock) blockState.getBlock()).grow(serverWorld, serverWorld.random, blockPos, blockState);
+            }
+        }
+
+        itemStack.damage(1, playerEntity, (p) -> {
+            playerEntity.sendToolBreakStatus(context.getHand());
+        });
 
         return ActionResult.PASS;
     }
@@ -119,15 +130,15 @@ public class AxeOfRegrowth extends AxeItem {
                 damage++;
             }
 
-            while(world.getBlockState(mutableDown.move(Direction.DOWN)).isIn(BlockTags.LOGS)) {
+            do {
                 world.breakBlock(mutableDown, true, miner);
                 damage++;
 
-                // Check if there is dirt below the log
                 if(world.getBlockState(mutableDown.down()).isIn(BlockTags.DIRT)) {
                     dirtState = world.getBlockState(mutableDown);
                 }
             }
+            while(world.getBlockState(mutableDown.move(Direction.DOWN)).isIn(BlockTags.LOGS));
 
             if(dirtState != null) {
                 placeSapling(world, mutableDown.up(), getSapling(state), (PlayerEntity)miner);
@@ -159,7 +170,7 @@ public class AxeOfRegrowth extends AxeItem {
     }
 
     private boolean isDamagedEnough(ItemStack itemStack) {
-        return itemStack.getDamage() < boneMealValue;
+        return !(itemStack.getDamage() < boneMealValue);
     }
 
     private boolean playerHasBoneMeal(PlayerEntity user) {
@@ -199,6 +210,7 @@ public class AxeOfRegrowth extends AxeItem {
 
         // Check if player has sapling
         if(!playerHasSapling(miner, state)) {
+            miner.sendMessage(Text.translatable("item.terraccessories.axe_of_regrowth.sapling").formatted(Formatting.RED), true);
             return;
         }
 
