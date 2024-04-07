@@ -13,6 +13,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -54,17 +55,15 @@ public class TinkererWorkshop extends BlockWithEntity {
     }
 
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        super.onBreak(world, pos, state, player);
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!state.isOf(newState.getBlock())) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof Inventory) {
+                ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
+                world.updateComparators(pos, this);
+            }
 
-        if (state.hasBlockEntity()) {
-            // drops everything in the inventory
-            world.getBlockEntity(pos).get(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                for (int i = 0; i < h.getSlots(); i++) {
-                    spawnAsEntity(worldIn, pos, h.getStackInSlot(i));
-                }
-            });
-            worldIn.removeTileEntity(pos);
+            super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
 }
