@@ -9,6 +9,10 @@
     }
   ],
   "output": {
-    "item": "minecraft:coal"
+    "item": "minecraft:diamond_sword"
+  },
+  "ench": {
+    "minecraft:sharpness": 3,
+    "terraccessories:harmony": 1
   }
 }
