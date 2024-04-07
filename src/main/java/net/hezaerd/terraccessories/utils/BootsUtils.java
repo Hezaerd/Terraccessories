@@ -4,50 +4,74 @@ import net.minecraft.block.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.tag.FluidTags;
 
 public class BootsUtils {
     private static final double MAX_DISTANCE_SURFACE = 0.1;
 
-    //nbt tag to check if previous block was solid then switch to not fall on lava when moving from ground to above lava
+    public  enum BootsState {
+        GROUND,
+        WATER,
+        LAVA,
+        AIR
+    }
 
-    public static void walkOnFluid(PlayerEntity player, Blocks fluid)
-    {}
 
-    public static  void  walkOnLava(PlayerEntity player) {
-        if (player == null) return;
+
+    public static void walkOnFluid(ItemStack stack, PlayerEntity player, Block fluid)
+    {
+        if (player == null || stack == null) return;
+        NbtCompound nbt = stack.getOrCreateNbt();
         if (player.isSneaking() || player.isOnGround()) {
+            nbt.putInt("previous_state", BootsState.GROUND.ordinal());
             player.setNoGravity(false);
             return;
         }
+        ShapeContext shapeContext = ShapeContext.of(player);
+        
 
-        if (player.isTouchingWater()) {}
+        /*    if (shapeContext.isAbove(FluidBlock.COLLISION_SHAPE, this.getBlockPos(), true) && !this.getWorld().getFluidState(this.getBlockPos().up()).isIn(FluidTags.LAVA))*/
         BlockState blockStateDown = player.getWorld().getBlockState(player.getBlockPos().down());
         BlockState blockStateFoot = player.getWorld().getBlockState(player.getBlockPos());
+        //if player is previously on ground add y velocity to avoid falling on lava
+        boolean steppingOnFluid = blockStateDown.getBlock() == fluid && blockStateFoot.isAir();
+        int lavaOrWater = fluid == Blocks.LAVA ? BootsState.LAVA.ordinal() : BootsState.WATER.ordinal();
+        int airOrGround = blockStateDown.isAir() ? BootsState.AIR.ordinal() : BootsState.GROUND.ordinal();
+        if (nbt.getInt("previous_state") == BootsState.GROUND.ordinal() && (blockStateFoot.getBlock() == fluid || blockStateDown.getBlock() == fluid)){
+            player.setNoGravity(true);
+            player.setVelocity(player.getVelocity().x, 0.2, player.getVelocity().z);
+            Log.i("Setting no gravity");
+            player.setNoGravity(false);
+            nbt.putInt("previous_state", lavaOrWater);
+        }
+        else if (nbt.getInt("previous_state") == lavaOrWater && blockStateDown.getBlock() != fluid){
+            nbt.putInt("previous_state", steppingOnFluid ? lavaOrWater : airOrGround);
+        }
+        else if (nbt.getInt("previous_state") == BootsState.AIR.ordinal() && blockStateDown.getBlock() == fluid){
+            nbt.putInt("previous_state", steppingOnFluid ? lavaOrWater : BootsState.GROUND.ordinal());
+        }
 
-        boolean steppingOnLava = blockStateDown.getBlock() == Blocks.LAVA && blockStateFoot.getBlock() == Blocks.AIR;
-        Log.i("steppingOnLava: " + steppingOnLava);
+        Log.i("Previous state: " + nbt.getInt("previous_state"));
+        Log.i("Stepping on fluid: " + steppingOnFluid);
+
         //Get the distance to the surface of the lava
         double distanceToSurface = (Math.floor(player.getY())) - player.getY();
-
-//        if (distanceToSurface > MAX_DISTANCE_SURFACE) {
-//            player.setNoGravity(false);
-//            return;
-//        }
-
-        if (steppingOnLava) {
+        if (distanceToSurface > MAX_DISTANCE_SURFACE) {
+            player.setNoGravity(false);
+            return;
+        }
+        if (steppingOnFluid) {
             player.setOnGround(true);
-
             //Clamp the distance to the surface to a maximum of 0.04
             distanceToSurface = Math.min(0.04, distanceToSurface);
-
-
             //Set the player's velocity to the distance to the surface if it is greater than the player's current velocity
             player.setVelocity(player.getVelocity().x, Math.max(distanceToSurface, player.getVelocity().y), player.getVelocity().z);
             MinecraftClient client = MinecraftClient.getInstance();
             if (client != null && client.player != null  && client.player.input != null)
             {
-                client.player.setSprinting(!player.isSprinting() && client.player.input.pressingForward);
+//                client.player.setSprinting(!player.isSprinting() && client.player.input.pressingForward);
 
                 if (client.player.input.jumping){
                     player.jump();
@@ -57,51 +81,7 @@ public class BootsUtils {
         else {
             player.setOnGround(false);
         }
-
     }
 
-    public static void walkOnWater(PlayerEntity player) {
-        if (player == null) return;
-        if (player.isSneaking() || player.isOnGround() || player.isSubmergedInWater()) {
-            player.setNoGravity(false);
-            return;
-        }
 
-        if (player.isTouchingWater()) {}
-            BlockState blockStateDown = player.getWorld().getBlockState(player.getBlockPos().down());
-            BlockState blockStateFoot = player.getWorld().getBlockState(player.getBlockPos());
-
-            //Get the distance to the surface of the water
-            double distanceToSurface = (Math.floor(player.getY())) - player.getY();
-
-            if (distanceToSurface > MAX_DISTANCE_SURFACE) {
-                player.setNoGravity(false);
-                return;
-            }
-
-            if (blockStateDown.getBlock() == Blocks.WATER && blockStateFoot.getBlock() == Blocks.AIR) {
-                player.setNoGravity(true);
-
-                //Clamp the distance to the surface to a maximum of 0.04
-                distanceToSurface = Math.min(0.04, distanceToSurface);
-
-                //Set the player's velocity to the distance to the surface if it is greater than the player's current velocity
-                player.setVelocity(player.getVelocity().x, Math.max(distanceToSurface, player.getVelocity().y), player.getVelocity().z);
-                MinecraftClient client = MinecraftClient.getInstance();
-                if (client != null && client.player != null  && client.player.input != null)
-                {
-                    client.player.setSprinting(!player.isSprinting() && client.player.input.pressingForward);
-
-                    if (client.player.input.jumping){
-                        player.jump();
-                    }
-                }
-            }
-            else {
-                player.setNoGravity(false);
-            }
-
-
-
-    }
 }
