@@ -214,17 +214,17 @@ public class AxeOfRegrowth extends AxeItem {
 
     private BlockState getSapling(BlockState log) {
         Block block = log.getBlock();
-        if (block.equals(Blocks.OAK_LOG)) {
+        if (block.equals(Blocks.OAK_LOG) || block.equals(Blocks.STRIPPED_OAK_LOG)) {
             return Blocks.OAK_SAPLING.getDefaultState();
-        } else if (block.equals(Blocks.SPRUCE_LOG)) {
+        } else if (block.equals(Blocks.SPRUCE_LOG) || block.equals(Blocks.STRIPPED_SPRUCE_LOG)) {
             return Blocks.SPRUCE_SAPLING.getDefaultState();
-        } else if (block.equals(Blocks.BIRCH_LOG)) {
+        } else if (block.equals(Blocks.BIRCH_LOG) || block.equals(Blocks.STRIPPED_BIRCH_LOG)) {
             return Blocks.BIRCH_SAPLING.getDefaultState();
-        } else if (block.equals(Blocks.JUNGLE_LOG)) {
+        } else if (block.equals(Blocks.JUNGLE_LOG) || block.equals(Blocks.STRIPPED_JUNGLE_LOG)) {
             return Blocks.JUNGLE_SAPLING.getDefaultState();
-        } else if (block.equals(Blocks.ACACIA_LOG)) {
+        } else if (block.equals(Blocks.ACACIA_LOG) || block.equals(Blocks.STRIPPED_ACACIA_LOG)) {
             return Blocks.ACACIA_SAPLING.getDefaultState();
-        } else if (block.equals(Blocks.DARK_OAK_LOG)) {
+        } else if (block.equals(Blocks.DARK_OAK_LOG) || block.equals(Blocks.STRIPPED_DARK_OAK_LOG)) {
             return Blocks.DARK_OAK_SAPLING.getDefaultState();
         }
         return Blocks.OAK_SAPLING.getDefaultState();
