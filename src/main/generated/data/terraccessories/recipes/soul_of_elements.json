@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "terraccessories:soul_of_fright"
+    },
+    {
+      "item": "terraccessories:soul_of_might"
+    },
+    {
+      "item": "terraccessories:soul_of_sight"
+    }
+  ],
+  "result": {
+    "item": "terraccessories:soul_of_elements"
+  }
+}

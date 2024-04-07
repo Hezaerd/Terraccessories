@@ -1,0 +1,14 @@
+{
+  "type": "terraccessories:tinkerer_workshop_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_axe"
+    },
+    {
+      "item": "terraccessories:staff_of_regrowth"
+    }
+  ],
+  "output": {
+    "item": "terraccessories:axe_of_regrowth"
+    }
+}
