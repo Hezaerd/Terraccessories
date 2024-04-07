@@ -15,6 +15,7 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -101,12 +102,13 @@ public class TinkererWorkshopRecipe implements Recipe<SimpleInventory> {
 
             JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
+            Map<Enchantment, Integer> enchantments = JsonHelper.hasJsonObject(json, "ench") ? ModEnchantment.ParseEnchantment(JsonHelper.getObject(json, "ench")) : new HashMap<>();
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new TinkererWorkshopRecipe(id, inputs, output, ModEnchantment.ParseEnchantment(JsonHelper.getObject(json, "ench")));
+            return new TinkererWorkshopRecipe(id, inputs, output, enchantments);
         }
 
         @Override

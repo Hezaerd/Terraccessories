@@ -10,8 +10,5 @@
   ],
   "output": {
     "item": "minecraft:diamond"
-  },
-  "ench": {
-    "minecraft:fortune": 3
   }
 }
