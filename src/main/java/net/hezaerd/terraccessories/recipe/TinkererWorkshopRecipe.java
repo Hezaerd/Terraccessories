@@ -2,8 +2,9 @@ package net.hezaerd.terraccessories.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.hezaerd.terraccessories.Terraccessories;
+import net.hezaerd.terraccessories.enchantment.ModEnchantment;
 import net.hezaerd.terraccessories.utils.LibMod;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -14,17 +15,21 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TinkererWorkshopRecipe implements Recipe<SimpleInventory> {
-    private final ItemStack output;
-    private final List<Ingredient> recipeItems;
     private final Identifier id;
+    private final List<Ingredient> recipeItems;
+    private final ItemStack output;
+    private final Map<Enchantment, Integer> enchantmentLevels;
 
-    public TinkererWorkshopRecipe(Identifier id, List<Ingredient> ingredients, ItemStack itemStack) {
+    public TinkererWorkshopRecipe(Identifier id, List<Ingredient> ingredients, ItemStack itemStack, Map<Enchantment, Integer> enchantments) {
         this.id = id;
         this.recipeItems = ingredients;
         this.output = itemStack;
+        this.enchantmentLevels = enchantments;
     }
 
     @Override
@@ -40,9 +45,7 @@ public class TinkererWorkshopRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) {
-        return output;
-    }
+    public ItemStack craft(SimpleInventory inventory, DynamicRegistryManager registryManager) { return output; }
 
     @Override
     public boolean fits(int width, int height) {
@@ -50,12 +53,16 @@ public class TinkererWorkshopRecipe implements Recipe<SimpleInventory> {
     }
 
     @Override
-    public ItemStack getOutput(DynamicRegistryManager registryManager) {
-        return output.copy();
-    }
+    public ItemStack getOutput(DynamicRegistryManager registryManager) { return output.copy(); }
 
     public ItemStack getResult(DynamicRegistryManager registryManager) {
-        return output;
+        ItemStack result = this.output.copy();
+
+        for (Map.Entry<Enchantment, Integer> entry : enchantmentLevels.entrySet()) {
+            result.addEnchantment(entry.getKey(), entry.getValue());
+        }
+
+        return result;
     }
 
     @Override
@@ -95,12 +102,13 @@ public class TinkererWorkshopRecipe implements Recipe<SimpleInventory> {
 
             JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
+            Map<Enchantment, Integer> enchantments = JsonHelper.hasJsonObject(json, "ench") ? ModEnchantment.ParseEnchantment(JsonHelper.getObject(json, "ench")) : new HashMap<>();
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new TinkererWorkshopRecipe(id, inputs, output);
+            return new TinkererWorkshopRecipe(id, inputs, output, enchantments);
         }
 
         @Override
@@ -112,7 +120,8 @@ public class TinkererWorkshopRecipe implements Recipe<SimpleInventory> {
             }
 
             ItemStack output = buf.readItemStack();
-            return new TinkererWorkshopRecipe(id, inputs, output);
+
+            return new TinkererWorkshopRecipe(id, inputs, output, null);
         }
 
         @Override

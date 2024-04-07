@@ -94,9 +94,13 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
     private void craftItem() {
         Optional<TinkererWorkshopRecipe> recipe = getCurrentRecipe();
 
+        NbtCompound nbt = recipe.get().getResult(null).getOrCreateNbt();
+        ItemStack itemStackResult =  new ItemStack(recipe.get().getResult(null).getItem(), getStack(OUTPUT_SLOT).getCount() + recipe.get().getResult(null).getCount());
+        itemStackResult.setNbt(nbt);
+
         this.removeStack(INPUT_SLOT, 1);
         this.removeStack(INPUT_SLOT_2, 1);
-        this.setStack(OUTPUT_SLOT, new ItemStack(recipe.get().getResult(null).getItem(), getStack(OUTPUT_SLOT).getCount() + recipe.get().getResult(null).getCount()));
+        this.setStack(OUTPUT_SLOT, itemStackResult);
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {

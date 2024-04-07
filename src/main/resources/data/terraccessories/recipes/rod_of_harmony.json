@@ -2,13 +2,16 @@
   "type": "terraccessories:tinkerer_workshop_recipe",
   "ingredients": [
     {
-      "item": "minecraft:diamond"
+      "item": "terraccessories:rod_of_discord"
     },
     {
       "item": "minecraft:diamond"
     }
   ],
   "output": {
-    "item": "minecraft:coal"
+    "item": "terraccessories:rod_of_discord"
+  },
+  "ench": {
+    "terraccessories:harmony": 1
   }
 }
