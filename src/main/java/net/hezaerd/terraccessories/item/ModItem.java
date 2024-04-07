@@ -7,6 +7,8 @@ import net.hezaerd.terraccessories.item.trinket.*;
 import net.hezaerd.terraccessories.sound.ModSound;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.ToolMaterials;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -21,7 +23,7 @@ public class ModItem implements ItemRegistryContainer {
     public static final Item BOTTOMLESS_LAVA_BUCKET = new BottomlessBucket(Fluids.LAVA);
     public static final Item ROD_OF_DISCORD = new RodOfDiscord();
     public static final Item STAFF_OF_REGROWTH = new StaffOfRegrowth();
-    public static final Item AXE_OF_REGROWTH = new AxeOfRegrowth();
+    public static final Item AXE_OF_REGROWTH = new AxeOfRegrowth(ToolMaterials.NETHERITE, 9.0F, -3.1F);
 
     /* Potion */
     public static final Item RANDOM_TELEPORTATION_POTION = new RandomTeleportationPotion();

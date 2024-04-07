@@ -1,33 +1,44 @@
 package net.hezaerd.terraccessories.item;
 
+import com.google.common.collect.BiMap;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.hezaerd.terraccessories.Terraccessories;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldEvents;
+import net.minecraft.world.event.GameEvent;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
 
-public class AxeOfRegrowth extends MiningToolItem {
-    public AxeOfRegrowth() {
-        super(7.0F, -3.2F, ToolMaterials.NETHERITE, BlockTags.LOGS,
+public class AxeOfRegrowth extends AxeItem {
+
+    private final int boneMealValue = 10;
+
+    public AxeOfRegrowth(ToolMaterial material, float attackDamage, float attackSpeed) {
+        super(material, attackDamage, attackSpeed,
                 new OwoItemSettings()
-                .group(Terraccessories.TERRACCESSORIES_GROUP)
-                .maxCount(1)
-                .maxDamage(640)
-                .rarity(Rarity.RARE));
+                        .group(Terraccessories.TERRACCESSORIES_GROUP)
+                        .maxCount(1)
+                        .maxDamage(640));
     }
 
     /* Tooltip */
@@ -37,87 +48,140 @@ public class AxeOfRegrowth extends MiningToolItem {
         tooltip.add(Text.translatable("item.terraccessories.axe_of_regrowth.tooltip2").formatted(Formatting.DARK_GREEN));
     }
 
-    /* Can Mine */
-    @Override
-    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
-        return true;
-    }
-
-
     /* Use */
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack itemStack = user.getStackInHand(hand);
+
         if (!user.isSneaking()) {
-            return TypedActionResult.pass(user.getStackInHand(hand));
+            return TypedActionResult.pass(itemStack);
         }
 
-        if(user.getStackInHand(hand).getDamage() < 10) {
-            world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_BAT_TAKEOFF, SoundCategory.BLOCKS, 0.8F, 1.0F);
-            user.sendMessage(Text.translatable("item.terraccessories.axe_of_regrowth.fail_damage").formatted(Formatting.GOLD), true);
-            user.getItemCooldownManager().set(this, 20);
-            return TypedActionResult.fail(user.getStackInHand(hand));
+        if(isDamagedEnough(itemStack)) {
+            playSoundAndSendMessage(world, user, SoundEvents.ENTITY_BAT_TAKEOFF, "item.terraccessories.axe_of_regrowth.repair.durability", Formatting.GOLD);
+            setItemCooldown(user);
+            return TypedActionResult.fail(itemStack);
         }
 
-        if(!user.getInventory().contains(new ItemStack(Items.BONE_MEAL))) {
-            world.playSound(null, user.getBlockPos(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            user.sendMessage(Text.translatable("item.terraccessories.axe_of_regrowth.fail_bonemeal").formatted(Formatting.RED), true);
-            user.getItemCooldownManager().set(this, 20);
-            return TypedActionResult.fail(user.getStackInHand(hand));
+        if(!playerHasBoneMeal(user)) {
+            playSoundAndSendMessage(world, user, SoundEvents.BLOCK_ANVIL_PLACE, "item.terraccessories.axe_of_regrowth.repair.bonemeal", Formatting.RED);
+            setItemCooldown(user);
+            return TypedActionResult.fail(itemStack);
         }
 
-        int maxToRepair = user.getStackInHand(hand).getDamage() / 10;
+        repairItem(world, user, itemStack);
+        return TypedActionResult.success(user.getStackInHand(hand));
+    }
+
+    /* Use on block */
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        World world = context.getWorld();
+        ItemStack itemStack = context.getStack();
+        BlockPos blockPos = context.getBlockPos();
+        PlayerEntity playerEntity = context.getPlayer();
+        BlockState blockState = world.getBlockState(blockPos);
+
+        boolean isDirt = blockState.isOf(Blocks.DIRT);
+        Optional<BlockState> strippedState = this.getStrippedState(blockState);
+        Optional<BlockState> oxidizedState = Oxidizable.getDecreasedOxidationState(blockState);
+        Optional<BlockState> waxedState = Optional.ofNullable((Block)((BiMap<?, ?>) HoneycombItem.WAXED_TO_UNWAXED_BLOCKS.get()).get(blockState.getBlock())).map((block) -> block.getStateWithProperties(blockState));
+        Optional<BlockState> currentState = Optional.empty();
+
+        if (strippedState.isPresent()) {
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            currentState = strippedState;
+        } else if (oxidizedState.isPresent()) {
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_SCRAPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.syncWorldEvent(playerEntity, WorldEvents.BLOCK_SCRAPED, blockPos, 0);
+            currentState = oxidizedState;
+        } else if (waxedState.isPresent()) {
+            world.playSound(playerEntity, blockPos, SoundEvents.ITEM_AXE_WAX_OFF, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.syncWorldEvent(playerEntity, WorldEvents.WAX_REMOVED, blockPos, 0);
+            currentState = waxedState;
+        }
+
+        if (currentState.isPresent()) {
+            if (playerEntity instanceof ServerPlayerEntity) {
+                Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
+            }
+
+            world.setBlockState(blockPos, currentState.get(), Block.NOTIFY_ALL | Block.REDRAW_ON_MAIN_THREAD);
+            world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, currentState.get()));
+
+            if (playerEntity != null) {
+                itemStack.damage(1, (LivingEntity)playerEntity, (Consumer)((p) -> {
+                    playerEntity.sendToolBreakStatus(context.getHand());
+                }));
+            }
+
+            return ActionResult.success(world.isClient);
+        }
+
+        if (isDirt) {
+            if (playerEntity instanceof ServerPlayerEntity) {
+                Criteria.ITEM_USED_ON_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
+            }
+
+            applyGrass(world, blockPos);
+
+            itemStack.damage(1, playerEntity, (p) -> {
+                playerEntity.sendToolBreakStatus(context.getHand());
+            });
+
+            return ActionResult.success(world.isClient);
+        }
+
+        else {
+            return ActionResult.PASS;
+        }
+    }
+
+    /* Get stripped state */
+    private Optional<BlockState> getStrippedState(BlockState state) {
+        return Optional.ofNullable(STRIPPED_BLOCKS.get(state.getBlock())).map((block) ->
+                block.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)));
+    }
+
+    private void playSoundAndSendMessage(World world, PlayerEntity user, SoundEvent soundEvent, String message, Formatting formatting) {
+        world.playSound(null, user.getBlockPos(), soundEvent, SoundCategory.BLOCKS, 0.8F, 1.0F);
+        user.sendMessage(Text.translatable(message).formatted(formatting), true);
+    }
+
+    private void setItemCooldown(PlayerEntity user) {
+        user.getItemCooldownManager().set(this, 20);
+    }
+
+    private boolean isDamagedEnough(ItemStack itemStack) {
+        return itemStack.getDamage() < boneMealValue;
+    }
+
+    private boolean playerHasBoneMeal(PlayerEntity user) {
+        return user.getInventory().contains(new ItemStack(Items.BONE_MEAL));
+    }
+
+    private void repairItem(World world, PlayerEntity user, ItemStack item) {
+        int maxToRepair = item.getDamage() / boneMealValue;
         int amount = user.getInventory().count(Items.BONE_MEAL);
         int slot = user.getInventory().getSlotWithStack(new ItemStack(Items.BONE_MEAL));
         int available = Math.min(maxToRepair, amount);
 
-        user.getStackInHand(hand).damage(-available * 10, user, (p) -> {});
+        item.damage(-available * boneMealValue, user, (p) -> {});
         user.getInventory().removeStack(slot, available);
-        world.playSound(null, user.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        user.sendMessage(Text.translatable("item.terraccessories.axe_of_regrowth.success").formatted(Formatting.GREEN), true);
-
-        return TypedActionResult.success(user.getStackInHand(hand));
+        playSoundAndSendMessage(world, user, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, "item.terraccessories.axe_of_regrowth.repair.success", Formatting.GREEN);
     }
 
-    /* Use on Block */
-    @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        if (context.getWorld().isClient) {
-            return ActionResult.PASS;
+    private void applyGrass(World world, BlockPos pos) {
+        world.setBlockState(pos, Blocks.GRASS_BLOCK.getDefaultState());
+        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+        Random random = world.random;
+        for (int i = 0; i < 4; i++) {
+            double x = pos.getX() + random.nextDouble();
+            double y = pos.up().getY() + random.nextDouble();
+            double z = pos.getZ() + random.nextDouble();
+
+            world.addParticle(ParticleTypes.HAPPY_VILLAGER, x, y, z, 0.0D, 0.0D, 0.0D);
         }
-
-        BlockState blockState = context.getWorld().getBlockState(context.getBlockPos());
-
-        // Check if the block is dirt
-        if (blockState.isOf(net.minecraft.block.Blocks.DIRT)) {
-            PlayerEntity player = context.getPlayer();
-            BlockPos pos = context.getBlockPos();
-            MinecraftClient client = MinecraftClient.getInstance();
-
-
-            // Set the block to grass
-            context.getWorld().setBlockState(context.getBlockPos(), Blocks.GRASS_BLOCK.getDefaultState());
-
-            // Damage the item
-            context.getStack().damage(1, player, (p) -> {
-                p.sendToolBreakStatus(context.getHand());
-            });
-
-            // Play the sound
-            context.getWorld().playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_GRASS_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
-            // Create particles
-            Random random = context.getWorld().random;
-            for (int i = 0; i < 4; i++) {
-                double x = pos.getX() + random.nextDouble();
-                double y = pos.up().getY() + random.nextDouble();
-                double z = pos.getZ() + random.nextDouble();
-
-                client.particleManager.addParticle(ParticleTypes.HAPPY_VILLAGER, x, y, z, 0.0D, 0.0D, 0.0D);
-            }
-
-            return ActionResult.SUCCESS;
-        }
-
-        return ActionResult.PASS;
     }
 }
