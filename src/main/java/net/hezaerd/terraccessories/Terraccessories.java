@@ -3,7 +3,6 @@ package net.hezaerd.terraccessories;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.hezaerd.terraccessories.block.ModBlock;
 import net.hezaerd.terraccessories.fluid.ModFluid;
 import net.hezaerd.terraccessories.enchantment.ModEnchantment;

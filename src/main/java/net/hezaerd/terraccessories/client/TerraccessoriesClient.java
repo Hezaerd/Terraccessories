@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.hezaerd.terraccessories.block.ModBlock;
+import net.hezaerd.terraccessories.block.entity.renderer.TinkererWorkshopEntityRenderer;
 import net.hezaerd.terraccessories.enchantment.ModEnchantment;
 import net.hezaerd.terraccessories.fluid.ModFluid;
 import net.hezaerd.terraccessories.item.ModItem;
@@ -13,6 +14,7 @@ import net.hezaerd.terraccessories.screen.TinkererWorkshopScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.util.Identifier;
 
@@ -38,5 +40,7 @@ public class TerraccessoriesClient implements ClientModInitializer {
                  return 0.0F;
              }
         });
+
+        BlockEntityRendererFactories.register(ModBlock.Entities.TINKERER_WORKSHOP, TinkererWorkshopEntityRenderer::new);
     }
 }

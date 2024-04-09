@@ -14,6 +14,9 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -68,6 +71,20 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
                 ScreenHandlerContext.create(this.world, this.pos),
                 (ImplementedInventory) () -> TinkererWorkshopEntity.this.inventory
         );
+    }
+
+    public ItemStack getRenderStack() {
+        if (this.getStack(OUTPUT_SLOT).isEmpty()) {
+            return this.getStack(INPUT_SLOT);
+        } else {
+            return this.getStack(OUTPUT_SLOT);
+        }
+    }
+
+    @Override
+    public void markDirty() {
+        world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        super.markDirty();
     }
 
     public void tick(World world) {
@@ -126,5 +143,16 @@ public class TinkererWorkshopEntity extends BlockEntity implements NamedScreenHa
     @Override
     public DefaultedList<ItemStack> getItems() {
         return inventory;
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
 }
